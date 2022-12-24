@@ -1,0 +1,56 @@
+.tabs {
+  display: flex;
+}
+
+.tab {
+  flex: 1;
+  border: none;
+  background-color: #f2f2f2;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn{
+background-color: #009c96;
+color: white;
+border-radius: 0;
+}
+
+.tab:hover {
+  background-color: #ddd;
+}
+
+.tab.active {
+  border-bottom: 1px solid white;
+  background-color: #ececec;
+}
+
+.tab-content {
+  display: none;
+  min-height: 150px;
+  border-top: none;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.my-card {
+    width: 250px;
+    height: 200px;
+    background-color: #e1e1e1;
+ 
+  }
+
+ .my-card >div > p{
+    color:#009c96;
+    font-weight: bold;
+ }
+
+ .my-card >div > div > button{
+    background-color:#009c96;
+    color:white;
+    border: none;
+ }

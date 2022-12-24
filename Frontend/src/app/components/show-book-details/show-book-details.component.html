@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row ">
+                <div class="col-md-6">
+                    <img [src]="book.image" class="w-100">
+                </div>
+                <div class="col-md-6">
+                    <p class="fs-4 fw-bold">{{book.name}}</p>
+                    <p><span class="fs-6 fw-bold">المؤلف : </span>{{book.authorName}}</p>
+                    <p>******</p>
+                    <pre class="fs-6"><span class="fs-6 fw-bold">دار لنشر      : </span> {{book.publisherName}}</pre>
+                    <pre class="fs-6"><span class="fs-6 fw-bold">اسم المؤلف    : </span> {{book.authorName}}</pre>
+                    <pre
+                        class="fs-6"><span class="fs-6 fw-bold">المترجم       : </span> {{book.translatorName ?? 'لا يوجد مترجم '}}</pre>
+                    <pre
+                        class="fs-6"><span class="fs-6 fw-bold">سنة النشر     : </span> {{book.publishYear | date:'MM/dd/YYYY'}}</pre>
+                    <pre class="fs-6"><span class="fs-6 fw-bold">عدد الصفحات   : </span> {{book.pageCount}}</pre>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="my-card m-auto mt-5 d-flex flex-column justify-content-center">
+
+                <form class="row g-3 align-items-center" [formGroup]="BuyBookFrom" (ngSubmit)="buyBook()">
+                    <div class="row">
+                        <div class="col-auto">
+                            <label class="col-form-label me-4 pt-0 mb-2">سعر الكتاب</label>
+                        </div>
+                        <div class="col-auto">
+                            <span class="form-text fs-4 me-4">
+                                {{book.price}}
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-auto">
+                            <label class="col-form-label me-4">الكمية</label>
+                        </div>
+
+                        <div class="col-auto w-50">
+                            <input type="number" ngModel="count" name="count" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 text-center">
+                        <button type="submit" class="d-inline btn">اشتري</button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <button class="d-inline btn">المفضلة</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-5">
+    <div class="col-md-12" style="height: 200px;">
+        <div class="tabs w-25">
+            <button class="tab fw-bold ms-1" [ngClass]="{active: activeTab == 1}" (click)="setActiveTab(1)">عن
+                الكتاب</button>
+            <button class="tab fw-bold" [ngClass]="{active: activeTab == 2}" (click)="setActiveTab(2)">اراء القراء حول
+                الكتاب</button>
+        </div>
+        <div class="tab-content active" *ngIf="activeTab == 1">
+            {{book.about}}
+        </div>
+        <div class="tab-content active" *ngIf="activeTab == 2">
+            هنا سوف تكون مجموعة اراء القراء
+        </div>
+    </div>
+</div>

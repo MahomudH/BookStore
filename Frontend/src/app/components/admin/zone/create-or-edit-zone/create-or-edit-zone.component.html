@@ -1,0 +1,26 @@
+<p mat-dialog-title class="border-bottom pb-2">اضافة منطقة جديد</p>
+<div mat-dialog-content>
+  <form [formGroup]="CreateOrEditForm" (ngSubmit)="createOrEditAuthor()">
+    <div class="mb-3">
+      <label class="mb-2">المنطقة</label>
+      <input
+        class="form-control"
+        name="name"
+        formControlName="name"
+        type="text"
+      />
+    </div>
+    <li class="text-danger " *ngIf="name.errors?.['required']">
+        يجب ادخال اسم المنطقة
+    </li>
+    <button class="btn btn-success m-2 mt-4" type="submit" *ngIf="!data.updateMood">
+      اضافة
+    </button>
+    <button class="btn btn-success m-2 mt-4" type="submit" *ngIf="data.updateMood">
+      تعديل
+    </button>
+    <button class="btn btn-danger m-2 mt-4" mat-button mat-dialog-close>
+      الغاء
+    </button>
+  </form>
+</div>

@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row d-flex-inline justify-content-between my-3 border-bottom pb-2">
+        <div class="fs-5 w-25">ادارة الفصحات الثابتة</div>
+      </div>
+    <div class="row ">
+
+        <div class="col-md-12 ">
+           
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">الصفحة</th>
+                        <th scope="col">التفاصيل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let staticPage of staticPages; index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{staticPage.pageName}}</td>
+                        <td>{{staticPage.details}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="EditForm" (ngSubmit)="onUpdate()">
+      <div class="my-3">
+          <label class="mb-2">الصفحة</label>
+          <select class="form-select" name="pageName" formControlName="id">
+              <option [value]="staticPage.id" name="id" *ngFor="let staticPage of staticPages">
+                  {{staticPage.pageName}}
+              </option>
+          </select>
+      </div>
+      <div class="mb-3">
+        <label class="mb-2">التفاصيل</label>
+        <textarea
+          class="form-control"
+          name="name"
+          formControlName="datials"
+          type="text"
+        ></textarea>
+      </div>
+      <button class="btn btn-success m-2 mt-4" type="submit">
+        تعديل
+      </button>
+   
+    </form>
+  </div>
+</div>
+</div>

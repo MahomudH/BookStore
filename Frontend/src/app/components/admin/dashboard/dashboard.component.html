@@ -1,0 +1,27 @@
+<nav class="nav mb-2" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb fs-4 pt-2">
+    <li class="breadcrumb-item text-white"><a >الرئيسية</a></li>
+    <li class="breadcrumb-item active text-white mx-2">/</li>
+    <li class="breadcrumb-item active text-white " aria-current="page">ادارة</li>
+  </ol>
+</nav>
+<div class="contaier ">
+  <div class="row">
+    <div class="col-md-2 h-auto my-side-bar" >
+      <ul class="my-list-group">
+        <li class="my-list-group-item my-3 text-white  border-bottom pb-3" routerLink="category" routerLinkActive>الأقسام</li>
+        <li class="my-list-group-item my-3 text-white border-bottom pb-3" routerLink="author" routerLinkActive>المؤلفين</li>
+        <li class="my-list-group-item my-3 text-white border-bottom pb-3" routerLink="translator" routerLinkActive>المترجمين</li>
+        <li class="my-list-group-item my-3 text-white border-bottom pb-3" routerLink="publisher" routerLinkActive>دور النشر</li>
+        <li class="my-list-group-item my-3 text-white border-bottom pb-3" routerLink="book" routerLinkActive>الكتب</li>
+        <li class="my-list-group-item my-3 text-white border-bottom pb-3" routerLink="zone" routerLinkActive>المناطق</li>
+        <li class="my-list-group-item my-3 text-white border-bottom pb-3" routerLink="staticPage" routerLinkActive>الصفحات الثابتة</li>
+        <hr>
+      </ul>
+    </div>
+    <div class="col-md-10"><router-outlet></router-outlet></div>
+  </div>
+
+
+
+</div>

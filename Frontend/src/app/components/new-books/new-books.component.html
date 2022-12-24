@@ -1,0 +1,52 @@
+<div class="container-fluid p-4">
+
+    <div class="row my-4">
+        <div class="col-md-12 d-flex justify-content-between">
+            <label class="fs-3 fw-bold s">أصدارات جديدة</label>
+            <a routerLink="/allBooks"><label class="fs-3 fw-bold text-black" style="cursor: pointer;">المزيد ..</label></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2" *ngFor="let book of books">
+            <div>
+                <a [routerLink]="['/book', book.id]">
+                    <img [src]="book.image" [width]="200" [height]="300">
+                </a>
+            
+                <div class="mt-2">
+                    <div class="d-flex justify-content-center">
+                        <p class="ms-2 mt-1 mb-0" style="font-size: 15px; color: #8c8c8c; font-weight: 700; font-family: Roboto;">
+                            </p>
+                        <div>
+                            <!-- <img src="/assets/icons/icon-star.svg">
+                            <img src="/assets/icons/icon-star.svg">
+                            <img src="/assets/icons/icon-star.svg">
+                            <img src="/assets/icons/icon-star.svg">
+                            <img src="/assets/icons/icon-star.svg"> -->
+                            *****
+                        </div>
+                    </div>
+            
+                    <a href="#" style="text-decoration: none;">
+                        <p style="text-align: center; font-size: 11px; color: #686868;"  class="mb-0">الكاتب: {{book.authorName}}</p>
+                    </a>    
+            
+                    <div class="d-flex justify-content-center" *ngIf="book.discount!= 0;else no_discount">
+                        <p class="ms-2" style="font-size: 18px;color: #153e76;font-weight: 700;">
+                            ${{book.price - book.discount}}.00</p>
+                        <p class="mt-1" style="font-size: 14px; text-decoration: line-through; color: #8c8c8c; font-weight: 700;">
+                            ${{book.price}}.00
+                        </p>
+                    </div> 
+            
+                    <ng-template #no_discount>
+                        <div class="d-flex justify-content-center">
+                            <p class="mt-1" style="font-size: 18px;color: #153e76;font-weight: 700;">${{book.price}}.00</p>
+                        </div>
+                    </ng-template> 
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

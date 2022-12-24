@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div
+    class="row d-flex-inline justify-content-between my-3 border-bottom pb-2"
+  >
+    <div class="fs-5 w-25">ادارة دور النشر</div>
+    <button class="btn btn-success mx-2 w-25" (click)="onCreate()">
+      اضافة دار النشر جديد
+      <span class="fw-bold">+</span>
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-md-12 ">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">دار النشر</th>
+            <th scope="col">شعار دار النشر</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let publisher of publishers; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ publisher.name }}</td>
+            <td>
+              <img class="image-thumbnail" width="50" [src]="publisher.logo" />
+            </td>
+            <td class="text-start">
+              <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(publisher.id)">
+                حذف
+              </button>
+         
+              <button class="btn btn-success btn-sm" (click)="onUpdate(i)">
+                تعديل
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>

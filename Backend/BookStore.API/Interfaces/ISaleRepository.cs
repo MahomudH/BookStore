@@ -1,0 +1,13 @@
+﻿using BookStore.API.Models;
+
+namespace BookStore.API.Interfaces
+{
+    public interface ISaleRepository
+    {
+        Task<List<Sale>> GetAllAsync();
+        Task<Sale?> GetByIdAsync(int id);
+        Task<Sale> AddAsync(Sale sale);
+        Task<Sale> UpdateAsync(Sale sale);
+        Task<bool> DeleteAsync(int id);
+    }
+}

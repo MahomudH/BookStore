@@ -1,0 +1,80 @@
+<p mat-dialog-title class="border-bottom pb-2">اضافة دار نشر جديد</p>
+<div mat-dialog-content>
+    <form [formGroup]="CreateOrEditForm" (ngSubmit)="createOrEditBook()">
+        <div class="row">
+
+            <div class="mb-3">
+                <label class="mb-2">صورة الكتاب</label>
+                <input (change)="onFileChange($event)" class="form-control" name="image" formControlName="image"
+                    type="file" />
+            </div>
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">اسم الكتاب</label>
+                <input class="form-control" name="name" formControlName="name" type="text" />
+            </div>
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">سعر الكتاب</label>
+                <input class="form-control" name="price" formControlName="price" type="number" />
+            </div>
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">مقدار الخصم</label>
+                <input class="form-control" name="discount" formControlName="discount" type="number" />
+            </div>
+        </div>
+        <div class="mb-3 ">
+            <label class="mb-2">عن الكتاب</label>
+            <textarea class="form-control" name="about" rows="3" formControlName="about" type="textarea"></textarea>
+        </div>
+        <div class="row">
+
+
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">عدد صفحات الكتاب</label>
+                <input class="form-control" name="pageCount" formControlName="pageCount" type="number" />
+            </div>
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">مؤلف الكتاب</label>
+                <select class="form-select" name="author" formControlName="author">
+                    <option [value]="author.id" name="author" *ngFor="let author of data.allAuthors">{{author.name}}
+                    </option>
+
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">دار النشر</label>
+                <select class="form-select" name="publisher" formControlName="publisher">
+                    <option [value]="publisher.id" name="publisher" *ngFor="let publisher of data.allPublishers">
+                        {{publisher.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+          
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">المترجم</label>
+                <select class="form-select" name="translator" formControlName="translator">
+                    <option [value]="translator.id" name="translator" *ngFor="let translator of data.allTranslators">
+                        {{translator.name}}</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label class="mb-2">القسم</label>
+                <select class="form-select" name="category" formControlName="category">
+                    <option [value]="category.id" name="category" *ngFor="let category of data.allCategories">
+                        {{category.name}}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+        <button class="btn btn-success m-2 mt-4" type="submit" *ngIf="!data.updateMood">
+            اضافة
+        </button>
+        <button class="btn btn-success m-2 mt-4" type="submit" *ngIf="data.updateMood">
+            تعديل
+        </button>
+        <button class="btn btn-danger m-2 mt-4" mat-button mat-dialog-close>
+            الغاء
+        </button>
+    </form>
+</div>
