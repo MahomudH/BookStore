@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Publisher } from 'src/app/Interfaces/Publisher';
 import { PublisherService } from 'src/app/_services/publisher.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-or-edit-publisher',
@@ -12,6 +13,7 @@ import { PublisherService } from 'src/app/_services/publisher.service';
 })
 export class CreateOrEditPublisherComponent implements OnInit {
   CreateOrEditForm: FormGroup;
+  publisherlogo:string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -32,6 +34,9 @@ export class CreateOrEditPublisherComponent implements OnInit {
         name: this.data.name,
         id: this.data.id,
       });
+      this.publisherlogo=this.data.logo;
+      console.log(this.publisherlogo);
+      
     }
   }
 
