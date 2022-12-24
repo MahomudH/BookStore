@@ -1,8 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-footer {
-  background-color: #009c96;
-}
 
 @font-face {
   font-family: "HelveticaNeueLT Arabic 55 Roman";
@@ -13,9 +10,14 @@ footer {
   font-display: swap;
 }
 
+html,
 body {
-  font-family: "HelveticaNeueLT Arabic 55 Roman";
+  height: 100%;
+  width: 100%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  font-family: "HelveticaNeueLT Arabic 55 Roman";
+  width: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

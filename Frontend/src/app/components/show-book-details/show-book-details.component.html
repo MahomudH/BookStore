@@ -1,11 +1,11 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="row ">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <img [src]="book.image" class="w-100">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <p class="fs-4 fw-bold">{{book.name}}</p>
                     <p><span class="fs-6 fw-bold">المؤلف : </span>{{book.authorName}}</p>
                     <p>******</p>
@@ -21,10 +21,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="my-card m-auto mt-5 d-flex flex-column justify-content-center">
 
-                <form class="row g-3 align-items-center" [formGroup]="BuyBookFrom" (ngSubmit)="buyBook()">
+                <div class="row g-3 align-items-center" >
                     <div class="row">
                         <div class="col-auto">
                             <label class="col-form-label me-4 pt-0 mb-2">سعر الكتاب</label>
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="col-auto w-50">
-                            <input type="number" ngModel="count" name="count" class="form-control">
+                            <input type="number"  name="count" class="form-control">
                         </div>
                     </div>
 
@@ -52,7 +52,7 @@
                     <div class="col-md-6 text-center">
                         <button class="d-inline btn">المفضلة</button>
                     </div>
-                </form>
+                </div>
 
             </div>
         </div>

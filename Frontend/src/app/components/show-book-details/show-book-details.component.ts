@@ -14,7 +14,7 @@ export class ShowBookDetailsComponent implements OnInit {
   bookId: number;
   book: Book= new Book();;
   activeTab = 1;
-  BuyBookFrom: FormGroup;
+  //BuyBookFrom: FormGroup;
 
   constructor(
     private _bookService: BookService,
@@ -22,10 +22,10 @@ export class ShowBookDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.BuyBookFrom = new FormGroup({
-      count: new FormControl('', [Validators.required]),
-      bookId: new FormControl(''),
-    });
+    // this.BuyBookFrom = new FormGroup({
+    //   count: new FormControl('', [Validators.required]),
+    //   bookId: new FormControl(''),
+    // });
     
 
     this.route.params.subscribe((params) => {

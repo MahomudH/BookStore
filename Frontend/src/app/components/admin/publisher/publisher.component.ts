@@ -68,6 +68,7 @@ export class PublisherComponent implements OnInit {
         updateMood: true,
         name: this.publishers[index].name,
         id: this.publishers[index].id,
+        logo :  this.publishers[index].logo
       },
     });
   }

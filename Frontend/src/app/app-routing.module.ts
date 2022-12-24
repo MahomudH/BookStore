@@ -58,6 +58,7 @@ const routes: Routes = [
   { path: 'auth/register', component: RegisterComponent},
   {path: 'auth/forbidden', component: ForbiddenComponent},
   {path: 'aboutus', component: AboutUsComponent},
+  {path:'**',redirectTo:''}
 ];
 
 @NgModule({

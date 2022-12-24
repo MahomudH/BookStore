@@ -23,7 +23,7 @@ import { BookComponent } from './components/admin/book/book.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CreateOrEditCategoryComponent } from './components/admin/Category/create-or-edit-category/create-or-edit-category.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { CreateOrEditAuthorComponent } from './components/admin/author/create-or-edit-author/create-or-edit-author.component';
 import { CreateOrEditPublisherComponent } from './components/admin/publisher/create-or-edit-publisher/create-or-edit-publisher.component';
 import { CreateOrEditTranslatorComponent } from './components/admin/translator/create-or-edit-translator/create-or-edit-translator.component';
@@ -79,24 +79,26 @@ import { PunchasesComponent } from './components/user/punchases/punchases.compon
     AboutUsComponent,
     UserProfileComponent,
     UserDashboardComponent,
-    PunchasesComponent
+    PunchasesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-left'
+      positionClass: 'toast-top-left',
     }),
-    MatDialogModule
+    MatDialogModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
-    multi: true,
-  },],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

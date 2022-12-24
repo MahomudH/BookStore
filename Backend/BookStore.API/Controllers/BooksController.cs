@@ -1,15 +1,10 @@
-﻿using BookStore.API.DTOs;
-using BookStore.API.DTOs.Book;
-using BookStore.API.DTOs.Category;
-using BookStore.API.DTOs.Publishers;
+﻿using BookStore.API.DTOs.Book;
 using BookStore.API.Interfaces;
 using BookStore.API.Models;
-using BookStore.API.Repositories;
 using BookStore.API.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BookStore.API.Controllers
 {
