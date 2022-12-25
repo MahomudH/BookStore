@@ -20,6 +20,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserDashboardComponent } from './components/user/user-dashboard/user-dashboard.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { PunchasesComponent } from './components/user/punchases/punchases.component';
+import { MainComponent } from './components/admin/main/main.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     canActivate:[AdminGuard],
     canActivateChild: [AuthGuard],
     children: [
+      { path: '', component: MainComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'author', component: AuthorComponent },
       { path: 'translator', component: TranslatorComponent },
