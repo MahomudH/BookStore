@@ -1,4 +1,5 @@
-export interface BuyBookInput{
-    bookId:number;
-    
+export class BuyBookInput {
+  bookId: number;
+  amount: number;
+  totalPrice: number;
 }

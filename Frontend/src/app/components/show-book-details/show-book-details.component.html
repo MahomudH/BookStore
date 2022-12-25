@@ -38,16 +38,16 @@
                     </div>
                     <div class="row">
                         <div class="col-auto">
-                            <label class="col-form-label me-4">الكمية</label>
+                            <label class="col-form-label me-4" >الكمية</label>
                         </div>
 
                         <div class="col-auto w-50">
-                            <input type="number"  name="count" class="form-control">
+                            <input type="number" [(ngModel)]="countOfBook" name="count" class="form-control">
                         </div>
                     </div>
 
                     <div class="col-md-6 text-center">
-                        <button type="submit" class="d-inline btn">اشتري</button>
+                        <button type="submit" class="d-inline btn" (click)="buyBook()">اشتري</button>
                     </div>
                     <div class="col-md-6 text-center">
                         <button class="d-inline btn">المفضلة</button>

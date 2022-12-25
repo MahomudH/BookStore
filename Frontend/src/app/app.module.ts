@@ -14,7 +14,7 @@ import { MostOrderBooksComponent } from './components/most-order-books/most-orde
 import { AdsBookComponent } from './components/ads-book/ads-book.component';
 import { CategoryComponent } from './components/admin/Category/category/category.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorComponent } from './components/admin/author/author.component';
 import { TranslatorComponent } from './components/admin/translator/translator.component';
@@ -91,6 +91,7 @@ import { PunchasesComponent } from './components/user/punchases/punchases.compon
       positionClass: 'toast-top-left',
     }),
     MatDialogModule,
+    FormsModule
   ],
   providers: [
     {

@@ -1,16 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { BuyBookInput } from '../Interfaces/Slae';
+import { Book } from '../Interfaces/Book';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SalesService {
-  baseURL = environment.baseUrl + 'Sales';
-  
-  constructor(private http:HttpClient) { }
+  private baseURL = environment.baseUrl + 'Sales';
+  private numberOfSales = 0;
 
-buyBook(){
-  
-}
+  constructor(private http: HttpClient) {}
+
+  buyBook(sale: BuyBookInput) {
+    return this.http.post<Book>(this.baseURL, sale);
+  }
+
+  getNumberOfSales() {
+    return this.numberOfSales;
+  }
+
+  addNumberOfSales() {
+    this.numberOfSales++;
+  }
 }
