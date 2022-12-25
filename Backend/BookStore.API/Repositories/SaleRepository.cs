@@ -55,5 +55,14 @@ namespace BookStore.API.Repositories
 
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<List<Sale>> GetAllSalesForUser(string userId)
+        {
+            return  await _context.Sales
+                .Where(x => x.UserId == userId)
+                .Include(x => x.Book)
+                .OrderByDescending(x => x.OrderDate)
+                .ToListAsync();
+        }
     }
 }

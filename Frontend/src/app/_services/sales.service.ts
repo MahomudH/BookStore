@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { BuyBookInput } from '../Interfaces/Slae';
+import { BuyBookInput, ShowSalesForUserDto } from '../Interfaces/Slae';
 import { Book } from '../Interfaces/Book';
 
 @Injectable({
@@ -15,6 +15,10 @@ export class SalesService {
 
   buyBook(sale: BuyBookInput) {
     return this.http.post<Book>(this.baseURL, sale);
+  }
+
+  getAllSalesForUser(){
+    return this.http.get<ShowSalesForUserDto[]>(this.baseURL+'/getUsersales')
   }
 
   getNumberOfSales() {

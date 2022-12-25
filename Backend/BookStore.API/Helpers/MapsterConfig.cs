@@ -4,6 +4,7 @@ using BookStore.API.DTOs.Book;
 using BookStore.API.DTOs.BookReview;
 using BookStore.API.DTOs.Category;
 using BookStore.API.DTOs.Publishers;
+using BookStore.API.DTOs.Sale;
 using BookStore.API.DTOs.StaticPages;
 using BookStore.API.DTOs.Translator;
 using BookStore.API.DTOs.Zone;
@@ -51,6 +52,12 @@ namespace BookStore.API.Helpers
 
             config.NewConfig<RegisterRequest, AppUser>()
                .Map(dest => dest.UserName, src => src.Email);
+
+            config.NewConfig<Sale, ShowSalesForUserDto>()
+                .Map(dest => dest.BookName, src => src.Book.Name)
+                .Map(dest => dest.BookPrice, src => src.Book.Price)
+                .Map(dest => dest.BookImage, src => src.Book.Image)
+                .TwoWays();
 
         }
     }

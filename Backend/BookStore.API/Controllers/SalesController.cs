@@ -56,7 +56,7 @@ namespace BookStore.API.Controllers
 
             var user = await _userManager.FindByEmailAsync(userEmail);
 
-            sale.UserId= user.Id;
+            sale.UserId = user.Id;
 
             var result = await _saleRepository.AddAsync(sale);
             return result != null
@@ -76,6 +76,17 @@ namespace BookStore.API.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _saleRepository.DeleteAsync(id);
+            return Ok(result);
+        }
+
+        [HttpGet("getUsersales")]
+        public async Task<IActionResult> GetAllSalesForUser()
+        {
+            var userEmail = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)!.Value;
+
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            var sales = await _saleRepository.GetAllSalesForUser(user.Id);
+            var result = _mapper.Map<ShowSalesForUserDto[]>(sales);
             return Ok(result);
         }
     }

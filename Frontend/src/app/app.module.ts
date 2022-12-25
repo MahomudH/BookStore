@@ -42,6 +42,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserDashboardComponent } from './components/user/user-dashboard/user-dashboard.component';
 import { PunchasesComponent } from './components/user/punchases/punchases.component';
+import { MainComponent } from './components/admin/main/main.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { PunchasesComponent } from './components/user/punchases/punchases.compon
     UserProfileComponent,
     UserDashboardComponent,
     PunchasesComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
