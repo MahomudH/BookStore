@@ -15,9 +15,9 @@
 
 <div class="row" *ngIf="!isUserLogin">
     <div class="col-md-4">
-        <button class="btn btn-outline-success text-nowrap" routerLink="/auth/login">دخول</button>
+        <button class="btn btn-outline-success text-nowrap" routerLink="/auth/login" (click)="changLoginORRegister()">دخول</button>
     </div>
     <div class="col-md-8">
-        <button class="btn btn-success text-nowrap" routerLink="/auth/register">إنشاء حساب</button>
+        <button class="btn btn-success text-nowrap" routerLink="/auth/register" (click)="changLoginORRegister()">إنشاء حساب</button>
     </div>
 </div>

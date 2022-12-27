@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
+import { LoginOrRegisterPageService } from 'src/app/_services/login-or-register-page.service';
 import { SalesService } from 'src/app/_services/sales.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class CartComponent implements OnInit {
   isUserLogin = false;
 
   constructor(
+    private loginOrRegisterPageService: LoginOrRegisterPageService,
     private _salesService: SalesService,
     private authSerivce: AuthService,
     private router : Router
@@ -32,4 +34,7 @@ export class CartComponent implements OnInit {
       : (this.isUserLogin = true);
   }
 
+  changLoginORRegister(){
+    this.loginOrRegisterPageService.changeIsThisPageLoginOrRegister();
+  }
 }

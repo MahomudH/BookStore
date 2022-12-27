@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5"  *ngIf="!IsRouterLoginOrRegister">
+<div class="container-fluid mt-5"  *ngIf="!isRouterLoginOrRegister">
 
   <header >
     <app-header></app-header >
@@ -20,6 +20,6 @@
 
 </div>
 
-<div class="container-fluid d-flex"  *ngIf="IsRouterLoginOrRegister" class="login-register">
+<div class="container-fluid d-flex"  *ngIf="isRouterLoginOrRegister" class="login-register">
       <router-outlet></router-outlet>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -13,8 +13,6 @@ import { CreateOrEditCategoryComponent } from '../create-or-edit-category/create
 export class CategoryComponent implements OnInit {
   categories: Category[];
   
-
-
   constructor(
     private _categoryService: CategoryService,
     private matDialog: MatDialog,
