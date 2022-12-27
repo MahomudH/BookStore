@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="isUserLogin">
     <div class="col-md-8">
         <a routerLink="user/profile">
             <img src="assets/icons/333.png" width="30" alt="my-account">
@@ -9,6 +9,15 @@
         <a routerLink="user/purchases">
             <img src="assets/icons/4.png" width="40" alt="my-account">
         </a>
-        <label class="text-white" style="position: absolute; top: 1px; right: 16px;">{{numberOfSales}}</label>
+        <label class="text-white" style="position: absolute; top: 1px; right: 16px;">{{numberOfsales}}</label>
+    </div>
+</div>
+
+<div class="row" *ngIf="!isUserLogin">
+    <div class="col-md-4">
+        <button class="btn btn-outline-success text-nowrap" routerLink="/auth/login">دخول</button>
+    </div>
+    <div class="col-md-8">
+        <button class="btn btn-success text-nowrap" routerLink="/auth/register">إنشاء حساب</button>
     </div>
 </div>

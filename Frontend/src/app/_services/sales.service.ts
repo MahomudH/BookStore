@@ -14,6 +14,7 @@ export class SalesService {
   constructor(private http: HttpClient) {}
 
   buyBook(sale: BuyBookInput) {
+    this.numberOfSales++;
     return this.http.post<Book>(this.baseURL, sale);
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 import { SalesService } from 'src/app/_services/sales.service';
 
 @Component({
@@ -8,9 +10,26 @@ import { SalesService } from 'src/app/_services/sales.service';
 })
 export class CartComponent implements OnInit {
   numberOfSales = 10;
+  isUserLogin = false;
 
-  constructor(private _salesService: SalesService) {}
+  constructor(
+    private _salesService: SalesService,
+    private authSerivce: AuthService,
+    private router : Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isUserLoginOrNot();
+  }
+
+  get numberOfsales() {
+    return this._salesService.getNumberOfSales();
+  }
+
+  isUserLoginOrNot() {
+    this.authSerivce.getToken() == null
+      ? (this.isUserLogin = false)
+      : (this.isUserLogin = true);
+  }
 
 }

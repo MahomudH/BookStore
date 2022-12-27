@@ -27,9 +27,9 @@ namespace BookStore.API.Controllers
 
         // GET: api/<BooksController>
         [HttpGet]
-        public async Task<ActionResult<List<BookDto>>> GetAllBooks()
+        public async Task<ActionResult<List<BookDto>>> GetAllBooks(string? filter = "")
         {
-            var books = await _bookRepository.GetAllAsync();
+            var books = await _bookRepository.GetAllAsync(filter);
             var result = new List<BookDto>();
 
             foreach (var book in books)

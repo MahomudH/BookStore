@@ -13,7 +13,7 @@ namespace BookStore.API.Repositories
         {
             _context = context;
         }
-        public async Task<List<Book>> GetAllAsync()
+        public async Task<List<Book>> GetAllAsync(string filter="")
         {
             return await _context.Books
                 .OrderByDescending(x => x.Id)
@@ -21,6 +21,7 @@ namespace BookStore.API.Repositories
                 .Include(x => x.AuthorFk)
                 .Include(x => x.CategoryFk)
                 .Include(x => x.PublisherFk)
+                .Where(x => x.Name.Contains(filter) || x.AuthorFk.Name.Contains(filter))
                 .ToListAsync();
         }
 
@@ -74,5 +75,6 @@ namespace BookStore.API.Repositories
                 .Include(x => x.PublisherFk)
                 .ToListAsync();
         }
+
     }
 }

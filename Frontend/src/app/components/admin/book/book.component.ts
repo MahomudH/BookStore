@@ -18,7 +18,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-book',
-  templateUrl: './book.component.html'
+  templateUrl: './book.component.html',
 })
 export class BookComponent implements OnInit {
   books: Book[];
@@ -26,8 +26,7 @@ export class BookComponent implements OnInit {
   allPublishers: Publisher[];
   allTranslators: Translator[];
   allCategories: Category[];
-
-
+  filter: string = '';
 
   constructor(
     private _bookService: BookService,
@@ -35,12 +34,11 @@ export class BookComponent implements OnInit {
     private _publisherService: PublisherService,
     private _translatorService: TranslatorService,
     private _categoryService: CategoryService,
-    private toastr : ToastrService,
+    private toastr: ToastrService,
     private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    
     this.getAllPublishers();
     this.getAllAuthors();
     this.getAllTranslators();
@@ -53,46 +51,49 @@ export class BookComponent implements OnInit {
   }
 
   getAllBooks() {
-    this._bookService.getBooks().subscribe({
+    this._bookService.getBooks(this.filter).subscribe({
       next: (data) => {
         this.books = data.map((item) => {
           return {
             ...item,
             image: environment.baseUrlWithoutApi + 'Images/' + item.image,
-          };  
+          };
         });
       },
     });
   }
 
   onDelete(bookId: number) {
-    this._bookService.deleteBook(bookId).subscribe((response) => {
-      this.reloadPage();
-      this.toastr.success('تم حذف الكتاب بنجاح');
-    },error => {
-      this.toastr.error('حذث خطا اثناء عملية الحذف');
-    });
+    this._bookService.deleteBook(bookId).subscribe(
+      (response) => {
+        this.reloadPage();
+        this.toastr.success('تم حذف الكتاب بنجاح');
+      },
+      (error) => {
+        this.toastr.error('حذث خطا اثناء عملية الحذف');
+      }
+    );
   }
 
-  onCreate(){
+  onCreate() {
     this.matDialog.open(CreateOrEditBookComponent, {
       width: '50%',
       data: {
         updateMood: false,
         allAuthors: this.allAuthors,
         allCategories: this.allCategories,
-        allPublishers:this.allPublishers,
-        allTranslators:this.allTranslators
+        allPublishers: this.allPublishers,
+        allTranslators: this.allTranslators,
       },
     });
   }
-  
+
   onUpdate(index: number) {
     this.matDialog.open(CreateOrEditBookComponent, {
       width: '50%',
       data: {
         updateMood: true,
-        id:this.books[index].id,
+        id: this.books[index].id,
         name: this.books[index].name,
         price: this.books[index].price,
         discount: this.books[index].discount,
@@ -100,20 +101,18 @@ export class BookComponent implements OnInit {
         publishYear: this.books[index].publishYear,
         pageCount: this.books[index].pageCount,
         authorId: this.books[index].authorId,
-        publisherId : this.books[index].publisherId,
+        publisherId: this.books[index].publisherId,
         translatorId: this.books[index].translatorId,
         categoryId: this.books[index].categoryId,
         allAuthors: this.allAuthors,
         allCategories: this.allCategories,
-        allPublishers:this.allPublishers,
-        allTranslators:this.allTranslators
+        allPublishers: this.allPublishers,
+        allTranslators: this.allTranslators,
       },
     });
   }
 
-  onShow(index: number){
-    
-  }
+  onShow(index: number) {}
 
   getAllAuthors() {
     this._authorService.getAuthors().subscribe({

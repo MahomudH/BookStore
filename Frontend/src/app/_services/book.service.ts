@@ -12,8 +12,8 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  getBooks() {
-    return this.http.get<Book[]>(this.baseUrl + 'Books');
+  getBooks(filter:string) {
+    return this.http.get<Book[]>(this.baseUrl + 'Books/'+filter);
   }
 
   getBookById(bookId: number) {
