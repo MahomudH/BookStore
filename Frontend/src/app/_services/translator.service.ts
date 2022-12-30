@@ -4,15 +4,23 @@ import { environment } from 'src/environments/environment';
 import { Translator } from '../Interfaces/Translator';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TranslatorService {
   baseUrl = environment.baseUrl;
+  translators: Translator[] = [];
 
   constructor(private http: HttpClient) {}
 
   getTranslators() {
-    return this.http.get<Translator[]>(this.baseUrl + 'Translator');
+    return this.http.get<Translator[]>(this.baseUrl + 'Translator').subscribe({
+      next: (result) => {
+        this.translators = result;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   getTranslatorById(translatorId: number) {
@@ -28,6 +36,8 @@ export class TranslatorService {
   }
 
   deleteTranslator(translatorId: number) {
-    return this.http.delete<boolean>(this.baseUrl + 'Translator/' + translatorId);
+    return this.http.delete<boolean>(
+      this.baseUrl + 'Translator/' + translatorId
+    );
   }
 }

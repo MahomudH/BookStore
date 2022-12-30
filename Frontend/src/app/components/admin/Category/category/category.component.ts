@@ -11,32 +11,24 @@ import { CreateOrEditCategoryComponent } from '../create-or-edit-category/create
   templateUrl: './category.component.html',
 })
 export class CategoryComponent implements OnInit {
-  categories: Category[];
-  
   constructor(
     private _categoryService: CategoryService,
     private matDialog: MatDialog,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.getAllCategories();
+    this._categoryService.getCategories();
   }
 
-  reloadPage() {
-    this.getAllCategories();
-  }
-
-  getAllCategories() {
-    this._categoryService.getCategories().subscribe((response) => {
-      this.categories = response;
-    });
+  get categories(): Category[] {
+    return this._categoryService.categories;
   }
 
   onDelete(categoryId: number) {
     this._categoryService.deleteCategory(categoryId).subscribe(
       (response) => {
-        this.reloadPage();
+        this._categoryService.getCategories();
         this.toastr.success('تم حذف القسم بنجاح');
       },
       (error) => {

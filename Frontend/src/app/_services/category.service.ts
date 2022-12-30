@@ -8,11 +8,16 @@ import { Category, CreateGategoryInput } from '../Interfaces/Category';
 })
 export class CategoryService {
   baseUrl = environment.baseUrl;
-  
+  categories: Category[] = [];
+
   constructor(private http: HttpClient) {}
 
   getCategories() {
-    return this.http.get<Category[]>(this.baseUrl + 'Categories');
+    this.http.get<Category[]>(this.baseUrl + 'Categories').subscribe({
+      next: (result) => {
+        this.categories = result;
+      },
+    });
   }
 
   getCategoryById(categoryId: number) {

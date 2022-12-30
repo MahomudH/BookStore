@@ -8,44 +8,35 @@ import { CreateOrEditAuthorComponent } from './create-or-edit-author/create-or-e
 
 @Component({
   selector: 'app-author',
-  templateUrl: './author.component.html'
+  templateUrl: './author.component.html',
 })
 export class AuthorComponent implements OnInit {
-  authors: Author[];
-
-
   constructor(
-    private authorService: AuthorService,
-    private toastr : ToastrService,
+    private _authorService: AuthorService,
+    private toastr: ToastrService,
     private matDialog: MatDialog
-    ) {}
+  ) {}
 
   ngOnInit(): void {
-    this.getAllAuthors();
+    this._authorService.getAuthors();
   }
 
-  reloadPage() {
-    this.getAllAuthors();
-  }
-
-  getAllAuthors() {
-    this.authorService.getAuthors().subscribe((response) => {
-      this.authors = response;
-    });
+  get authors(): Author[] {
+    return this._authorService.authors;
   }
 
   onDelete(categoryId: number) {
-    this.authorService.deleteAuthor(categoryId).subscribe(
+    this._authorService.deleteAuthor(categoryId).subscribe(
       (response) => {
-        this.reloadPage();
+        this._authorService.getAuthors();
         this.toastr.success('تم حذف القسم بنجاح');
       },
       (error) => {
         this.toastr.error('حدث خطا اثناء عملية الحذف');
-      });
+      }
+    );
   }
 
-  
   onCreate() {
     this.matDialog.open(CreateOrEditAuthorComponent, {
       width: '50%',
@@ -55,7 +46,6 @@ export class AuthorComponent implements OnInit {
     });
   }
 
-  
   onUpdate(index: number) {
     this.matDialog.open(CreateOrEditAuthorComponent, {
       width: '50%',
@@ -66,5 +56,4 @@ export class AuthorComponent implements OnInit {
       },
     });
   }
-
 }

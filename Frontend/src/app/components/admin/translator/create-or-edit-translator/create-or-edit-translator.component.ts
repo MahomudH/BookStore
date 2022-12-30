@@ -45,6 +45,7 @@ export class CreateOrEditTranslatorComponent implements OnInit {
   updateAuthor() {
     this._translatorService.updateTranslator(this.CreateOrEditForm.value).subscribe(
       (response) => {
+        this._translatorService.getTranslators();
         this.toastr.success('تم تعديل المؤلف بنجاح');
         this.ref.close();
       },
@@ -58,8 +59,8 @@ export class CreateOrEditTranslatorComponent implements OnInit {
   createAuthor() {    
     this._translatorService.addTranslator(this.CreateOrEditForm.value).subscribe(
       (response) => {
+        this._translatorService.getTranslators();
         this.toastr.success('تم اضافة المؤلف بنجاح');
-      
         this.ref.close();
       },
       (error) => {

@@ -45,6 +45,7 @@ export class CreateOrEditAuthorComponent implements OnInit {
   updateAuthor() {
     this._authorService.updateAuthor(this.CreateOrEditForm.value).subscribe(
       (response) => {
+        this._authorService.getAuthors();
         this.toastr.success('تم تعديل المؤلف بنجاح');
         this.ref.close();
       },
@@ -58,8 +59,8 @@ export class CreateOrEditAuthorComponent implements OnInit {
   createAuthor() {    
     this._authorService.addAuthor(this.CreateOrEditForm.value).subscribe(
       (response) => {
+        this._authorService.getAuthors();
         this.toastr.success('تم اضافة المؤلف بنجاح');
-      
         this.ref.close();
       },
       (error) => {

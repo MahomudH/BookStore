@@ -8,11 +8,19 @@ import { Author } from '../Interfaces/Author';
 })
 export class AuthorService {
   baseUrl = environment.baseUrl;
+  authors: Author[] = [];
 
   constructor(private http: HttpClient) {}
 
   getAuthors() {
-    return this.http.get<Author[]>(this.baseUrl + 'Author');
+    return this.http.get<Author[]>(this.baseUrl + 'Author').subscribe({
+      next: (result) => {
+        this.authors = result;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   getAuthorById(authorId: number) {

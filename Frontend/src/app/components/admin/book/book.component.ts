@@ -115,11 +115,11 @@ export class BookComponent implements OnInit {
   onShow(index: number) {}
 
   getAllAuthors() {
-    this._authorService.getAuthors().subscribe({
-      next: (response) => {
-        this.allAuthors = response;
-      },
-    });
+    // this._authorService.getAuthors().subscribe({
+    //   next: (response) => {
+    //     this.allAuthors = response;
+    //   },
+    // });
   }
 
   getAllPublishers() {
@@ -131,18 +131,19 @@ export class BookComponent implements OnInit {
   }
 
   getAllTranslators() {
-    this._translatorService.getTranslators().subscribe({
-      next: (response) => {
-        this.allTranslators = response;
-      },
-    });
+    // this._translatorService.getTranslators().subscribe({
+    //   next: (response) => {
+    //     this.allTranslators = response;
+    //   },
+    // });
   }
 
   getAllCategories() {
-    this._categoryService.getCategories().subscribe({
-      next: (response) => {
-        this.allCategories = response;
-      },
-    });
+    // this._categoryService.getCategories().subscribe({
+    //   next: (response) => {
+    //     this.allCategories = response;
+    //   },
+    // });
+
   }
 }

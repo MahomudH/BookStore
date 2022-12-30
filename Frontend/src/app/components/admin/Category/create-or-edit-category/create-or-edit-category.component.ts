@@ -15,7 +15,7 @@ export class CreateOrEditCategoryComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _categoryService: CategoryService,
     private toastr: ToastrService,
-    private ref :MatDialogRef<CreateOrEditCategoryComponent>
+    private ref: MatDialogRef<CreateOrEditCategoryComponent>
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class CreateOrEditCategoryComponent implements OnInit {
   }
 
   createOrEditCategory() {
-    if(this.CreateOrEditForm.valid){
+    if (this.CreateOrEditForm.valid) {
       if (this.data.updateMood) {
         this.updateCategory();
       } else {
@@ -44,6 +44,7 @@ export class CreateOrEditCategoryComponent implements OnInit {
   updateCategory() {
     this._categoryService.updateCategory(this.CreateOrEditForm.value).subscribe(
       (response) => {
+        this._categoryService.getCategories();
         this.toastr.success('تم تعديل القسم بنجاح');
         this.ref.close();
       },
@@ -54,11 +55,11 @@ export class CreateOrEditCategoryComponent implements OnInit {
     );
   }
 
-  createCategory() {    
+  createCategory() {
     this._categoryService.addCategory(this.CreateOrEditForm.value).subscribe(
       (response) => {
+        this._categoryService.getCategories();
         this.toastr.success('تم اضافة قسم بنجاح');
-      
         this.ref.close();
       },
       (error) => {
@@ -68,7 +69,7 @@ export class CreateOrEditCategoryComponent implements OnInit {
     );
   }
 
-  get name(){
+  get name() {
     return this.CreateOrEditForm.get('name')!;
   }
 }

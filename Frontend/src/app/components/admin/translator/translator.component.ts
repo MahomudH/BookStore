@@ -10,33 +10,25 @@ import { CreateOrEditTranslatorComponent } from './create-or-edit-translator/cre
   templateUrl: './translator.component.html',
 })
 export class TranslatorComponent implements OnInit {
-  translators: Translator[];
-
   constructor(
-    private translatorService: TranslatorService,
+    private _translatorService: TranslatorService,
     private toastr: ToastrService,
     private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.getAllTranslators();
+    this._translatorService.getTranslators();
   }
 
-  reloadPage() {
-    this.getAllTranslators();
-  }
-
-  getAllTranslators() {
-    this.translatorService.getTranslators().subscribe((response) => {
-      this.translators = response;
-    });
+  get translators(): Translator[] {
+    return this._translatorService.translators;
   }
 
   onDelete(translatorId: number) {
-    this.translatorService
+    this._translatorService
       .deleteTranslator(translatorId)
       .subscribe((response) => {
-        this.reloadPage();
+        this._translatorService.getTranslators();
       });
   }
 
