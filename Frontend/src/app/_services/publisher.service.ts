@@ -8,18 +8,28 @@ import { Publisher } from '../Interfaces/Publisher';
 })
 export class PublisherService {
   baseUrl = environment.baseUrl;
+  publishers: Publisher[] = [];
 
   constructor(private http: HttpClient) {}
 
   getPublishers() {
-    return this.http.get<Publisher[]>(this.baseUrl + 'Publishers');
+    return this.http.get<Publisher[]>(this.baseUrl + 'Publishers').subscribe({
+      next: (result) => {
+        this.publishers = result.map((item) => {
+          return {
+            ...item,
+            logo: environment.baseUrlWithoutApi + 'Images/' + item.logo,
+          };
+        });
+      },
+    });
   }
 
   getPublisherById(publisherId: number) {
     this.http.get<Publisher>(this.baseUrl + 'Publishers/' + publisherId);
   }
 
-  addPublisher(publisher:Publisher) {
+  addPublisher(publisher: Publisher) {
     let formData = new FormData();
     formData.append('Name', publisher.name);
     formData.append('Logo', publisher.logo);
@@ -29,8 +39,7 @@ export class PublisherService {
     });
   }
 
-
-  updatePublisher(publisher:Publisher) {
+  updatePublisher(publisher: Publisher) {
     let formData = new FormData();
     formData.append('Id', publisher.id.toString());
     formData.append('Name', publisher.name);

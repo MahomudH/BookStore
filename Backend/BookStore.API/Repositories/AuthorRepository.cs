@@ -16,7 +16,9 @@ namespace BookStore.API.Repositories
 
         public async Task<List<Author>> GetAllAsync()
         {
-            return await _context.Authors.ToListAsync();
+            return await _context.Authors
+                .OrderBy(x => x.Name)
+                .ToListAsync();
         }
 
         public async Task<Author?> GetByIdAsync(int id)

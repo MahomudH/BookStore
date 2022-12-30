@@ -13,44 +13,28 @@ import { CreateOrEditPublisherComponent } from './create-or-edit-publisher/creat
   templateUrl: './publisher.component.html',
 })
 export class PublisherComponent implements OnInit {
-  publishers: Publisher[];
   progressValue: string;
   imageSrc: string;
 
-
   constructor(
-    private publisherService: PublisherService,
+    private _publisherService: PublisherService,
     private toastr: ToastrService,
     private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.getAllPublishers();
+    this._publisherService.getPublishers();
   }
 
-  reloadPage() {
-    this.getAllPublishers();
-  }
-
-  getAllPublishers() {
-    this.publisherService.getPublishers().subscribe({
-      next: (data) => {
-        this.publishers = data.map((item) => {
-          return {
-            ...item,
-            logo: environment.baseUrlWithoutApi + 'Images/' + item.logo,
-          };
-        });
-      },
-    });
+  get publishers(): Publisher[] {
+    return this._publisherService.publishers;
   }
 
   onDelete(publisherId: number) {
-    this.publisherService.deletePublisher(publisherId).subscribe((response) => {
-      this.reloadPage();
+    this._publisherService.deletePublisher(publisherId).subscribe((response) => {
+      this._publisherService.getPublishers();
     });
   }
-
 
   onCreate() {
     this.matDialog.open(CreateOrEditPublisherComponent, {
@@ -68,7 +52,7 @@ export class PublisherComponent implements OnInit {
         updateMood: true,
         name: this.publishers[index].name,
         id: this.publishers[index].id,
-        logo :  this.publishers[index].logo
+        logo: this.publishers[index].logo,
       },
     });
   }

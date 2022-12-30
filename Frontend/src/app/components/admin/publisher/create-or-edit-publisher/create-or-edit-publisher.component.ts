@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CreateOrEditPublisherComponent implements OnInit {
   CreateOrEditForm: FormGroup;
-  publisherlogo:string;
+  publisherlogo: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,9 +34,8 @@ export class CreateOrEditPublisherComponent implements OnInit {
         name: this.data.name,
         id: this.data.id,
       });
-      this.publisherlogo=this.data.logo;
+      this.publisherlogo = this.data.logo;
       console.log(this.publisherlogo);
-      
     }
   }
 
@@ -56,6 +55,7 @@ export class CreateOrEditPublisherComponent implements OnInit {
     this._publisherService.updatePublisher(newPublisher).subscribe({
       next: (data) => {
         if (data.type == HttpEventType.Response) {
+          this._publisherService.getPublishers();
           this.toastr.success('تم تعديل دار النشر بنجاح');
           this.ref.close();
         }
@@ -73,6 +73,7 @@ export class CreateOrEditPublisherComponent implements OnInit {
     this._publisherService.addPublisher(newPublisher).subscribe({
       next: (data) => {
         if (data.type == HttpEventType.Response) {
+          this._publisherService.getPublishers();
           this.toastr.success('تم اضافة دار نشر جديدة بنجاح');
           this.ref.close();
         }

@@ -1,8 +1,6 @@
-import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Author } from 'src/app/Interfaces/Author';
-import { Book, CreateBookInput } from 'src/app/Interfaces/Book';
+import { Book } from 'src/app/Interfaces/Book';
 import { Category } from 'src/app/Interfaces/Category';
 import { Publisher } from 'src/app/Interfaces/Publisher';
 import { Translator } from 'src/app/Interfaces/Translator';
@@ -22,10 +20,6 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class BookComponent implements OnInit {
   books: Book[];
-  allAuthors: Author[];
-  allPublishers: Publisher[];
-  allTranslators: Translator[];
-  allCategories: Category[];
   filter: string = '';
 
   constructor(
@@ -39,10 +33,10 @@ export class BookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllPublishers();
-    this.getAllAuthors();
-    this.getAllTranslators();
-    this.getAllCategories();
+    this._authorService.getAuthors();
+    this._publisherService.getPublishers();
+    this._translatorService.getTranslators();
+    this._categoryService.getCategories();
     this.getAllBooks();
   }
 
@@ -114,36 +108,19 @@ export class BookComponent implements OnInit {
 
   onShow(index: number) {}
 
-  getAllAuthors() {
-    // this._authorService.getAuthors().subscribe({
-    //   next: (response) => {
-    //     this.allAuthors = response;
-    //   },
-    // });
+  get allAuthors(): Author[] {
+    return this._authorService.authors;
   }
 
-  getAllPublishers() {
-    this._publisherService.getPublishers().subscribe({
-      next: (response) => {
-        this.allPublishers = response;
-      },
-    });
+  get allPublishers(): Publisher[] {
+    return this._publisherService.publishers;
   }
 
-  getAllTranslators() {
-    // this._translatorService.getTranslators().subscribe({
-    //   next: (response) => {
-    //     this.allTranslators = response;
-    //   },
-    // });
+  get allTranslators(): Translator[] {
+    return this._translatorService.translators;
   }
 
-  getAllCategories() {
-    // this._categoryService.getCategories().subscribe({
-    //   next: (response) => {
-    //     this.allCategories = response;
-    //   },
-    // });
-
+  get allCategories(): Category[] {
+    return this._categoryService.categories;
   }
 }

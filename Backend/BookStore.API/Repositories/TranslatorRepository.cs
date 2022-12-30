@@ -15,7 +15,9 @@ namespace BookStore.API.Repositories
         }
         public async Task<List<Translator>> GetAllAsync()
         {
-            return await _context.Translators.ToListAsync();
+            return await _context.Translators
+                .OrderBy(x=> x.Name)
+                .ToListAsync();
         }
 
         public async Task<Translator?> GetByIdAsync(int id)

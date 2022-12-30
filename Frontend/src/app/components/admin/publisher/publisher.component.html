@@ -21,10 +21,10 @@
         <tbody>
           <tr *ngFor="let publisher of publishers; index as i">
             <td>{{ i + 1 }}</td>
-            <td>{{ publisher.name }}</td>
             <td>
               <img class="image-thumbnail" width="50" [src]="publisher.logo" />
             </td>
+            <td>{{ publisher.name }}</td>
             <td class="text-start">
               <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(publisher.id)">
                 حذف

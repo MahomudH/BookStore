@@ -15,7 +15,9 @@ namespace BookStore.API.Repositories
         }
         public async Task<List<Category>> GetAllAsync()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories
+                .OrderBy(x => x.Name)
+                .ToListAsync();
         }
 
         public async Task<Category?> GetByIdAsync(int id)
