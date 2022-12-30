@@ -8,24 +8,14 @@ import { environment } from 'src/environments/environment';
   templateUrl: './all-books.component.html',
 })
 export class AllBooksComponent implements OnInit {
-  books: Book[];
   constructor(private _bookService: BookService) {}
   filter: string = '';
 
   ngOnInit(): void {
-    this.getAllBooks();
+    this._bookService.getBooks('');
   }
 
-  getAllBooks() {
-    this._bookService.getBooks(this.filter).subscribe({
-      next: (data) => {
-        this.books = data.map((item) => {
-          return {
-            ...item,
-            image: environment.baseUrlWithoutApi + 'Images/' + item.image,
-          };
-        });
-      },
-    });
+  get books(): Book[] {
+    return this._bookService.books;
   }
 }

@@ -13,13 +13,13 @@ import { environment } from 'src/environments/environment';
 import { CreateOrEditBookComponent } from './create-or-edit-book/create-or-edit-book.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
+import { ShowBookDetailsForAdminComponent } from './show-book-details-for-admin/show-book-details-for-admin.component';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
 })
 export class BookComponent implements OnInit {
-  books: Book[];
   filter: string = '';
 
   constructor(
@@ -37,30 +37,17 @@ export class BookComponent implements OnInit {
     this._publisherService.getPublishers();
     this._translatorService.getTranslators();
     this._categoryService.getCategories();
-    this.getAllBooks();
+    this._bookService.getBooks('');
   }
 
-  reloadPage() {
-    this.getAllBooks();
-  }
-
-  getAllBooks() {
-    this._bookService.getBooks(this.filter).subscribe({
-      next: (data) => {
-        this.books = data.map((item) => {
-          return {
-            ...item,
-            image: environment.baseUrlWithoutApi + 'Images/' + item.image,
-          };
-        });
-      },
-    });
+  get books(): Book[] {
+    return this._bookService.books;
   }
 
   onDelete(bookId: number) {
     this._bookService.deleteBook(bookId).subscribe(
       (response) => {
-        this.reloadPage();
+        this._bookService.getBooks('');
         this.toastr.success('تم حذف الكتاب بنجاح');
       },
       (error) => {
@@ -106,7 +93,26 @@ export class BookComponent implements OnInit {
     });
   }
 
-  onShow(index: number) {}
+  onShow(index: number) {
+    this.matDialog.open(ShowBookDetailsForAdminComponent, {
+      width: '50%',
+      data: {
+        updateMood: true,
+        id: this.books[index].id,
+        name: this.books[index].name,
+        price: this.books[index].price,
+        image: this.books[index].image,
+        discount: this.books[index].discount,
+        about: this.books[index].about,
+        publishYear: this.books[index].publishYear,
+        pageCount: this.books[index].pageCount,
+        authorName: this.books[index].authorName,
+        publisherName: this.books[index].publisherName,
+        translatorName: this.books[index].translatorName,
+        categoryName: this.books[index].categoryName,
+      },
+    });
+  }
 
   get allAuthors(): Author[] {
     return this._authorService.authors;

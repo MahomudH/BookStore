@@ -1,0 +1,62 @@
+<p mat-dialog-title class="border-bottom pb-2">عرض تفاصيل الكتاب</p>
+
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <img [src]="data.image" alt="book" width="200" />
+        </div>
+        <div class="mb-3 col-sm-2">
+
+            <p>اسم الكتاب </p>
+
+            <p>سعر الكتاب </p>
+
+            <p>مقدار الخصم </p>
+
+            <p>المؤلف </p>
+
+            <p>دار النشر </p>
+
+            <p>المترجم </p>
+
+            <p>القسم </p>
+
+        </div>
+        <div class="mb-3 col-md-4">
+
+            <p>{{data.name}}</p>
+
+            <p>{{data.price}}</p>
+
+            <p>{{data.discount}}</p>
+
+            <p>{{data.authorName}}</p>
+
+            <p>{{data.publisherName}}</p>
+
+            <p>{{data.translatorName}}</p>
+
+            <p>{{data.categoryName}}</p>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="height: 200px;">
+            <div class="tabs w-25">
+                <button class="tab fw-bold ms-1 text-nowrap" [ngClass]="{active: activeTab == 1}" (click)="setActiveTab(1)">عن
+                    الكتاب</button>
+                <button class="tab fw-bold text-nowrap" [ngClass]="{active: activeTab == 2}"  (click)="setActiveTab(2)">اراء القراء حول
+                    الكتاب</button>
+            </div>
+            <div class="tab-content active" *ngIf="activeTab == 1">
+                {{data.about}}
+            </div>
+            <div class="tab-content active" *ngIf="activeTab == 2">
+                هنا سوف تكون مجموعة اراء القراء
+            </div>
+        </div>
+    </div>
+
+<mat-dialog-actions align="start">
+    <button class="btn btn-outline-danger w-25" mat-dialog-close>اغلاق</button>
+</mat-dialog-actions>

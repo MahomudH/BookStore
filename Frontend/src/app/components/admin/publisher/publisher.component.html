@@ -12,14 +12,14 @@
     <div class="col-md-12 ">
       <table class="table table-striped">
         <thead>
-          <tr>
+          <tr class="align-middle">
             <th scope="col">#</th>
             <th scope="col">دار النشر</th>
             <th scope="col">شعار دار النشر</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let publisher of publishers; index as i">
+          <tr *ngFor="let publisher of publishers; index as i" class="align-middle">
             <td>{{ i + 1 }}</td>
             <td>
               <img class="image-thumbnail" width="50" [src]="publisher.logo" />

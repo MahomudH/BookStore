@@ -25,7 +25,6 @@ export class CreateOrEditBookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
 
     this.CreateOrEditForm = new FormGroup({
       id: new FormControl(''),
@@ -78,6 +77,7 @@ export class CreateOrEditBookComponent implements OnInit {
     this._bookService.updateBook(newBook).subscribe({
       next: (data) => {
         if (data.type == HttpEventType.Response) {
+          this._bookService.getBooks('');
           this.toastr.success('تم تعديل الكتاب بنجاح');
           this.ref.close();
         }
@@ -99,6 +99,7 @@ export class CreateOrEditBookComponent implements OnInit {
     this._bookService.addBook(newBook).subscribe({
       next: (data) => {
         if (data.type == HttpEventType.Response) {
+          this._bookService.getBooks('');
           this.toastr.success('تم اضافة كتاب جديدة بنجاح');
           this.ref.close();
         }
