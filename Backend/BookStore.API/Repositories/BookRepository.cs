@@ -1,19 +1,23 @@
 ﻿using BookStore.API.Data;
+using BookStore.API.DTOs.Book;
 using BookStore.API.Interfaces;
 using BookStore.API.Models;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.API.Repositories
 {
-    public class BookRepository:IBookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly BookStoreDbContext _context;
+        private readonly IMapper _mapper;
 
-        public BookRepository(BookStoreDbContext context)
+        public BookRepository(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
-        public async Task<List<Book>> GetAllAsync(string filter="")
+        public async Task<List<Book>> GetAllAsync(string filter = "")
         {
             return await _context.Books
                 .OrderByDescending(x => x.Id)
@@ -76,5 +80,24 @@ namespace BookStore.API.Repositories
                 .ToListAsync();
         }
 
+        public async Task<MostBookSalesDto> GetTheMostSoldBook()
+        {
+            var result = await _context.Sales
+                .GroupBy(x => x.BookId)
+                .Select(x => new
+                {
+                    BookId = x.Key,
+                    TotalAmount = x.Sum(s => s.Amount)
+                })
+                .OrderByDescending(x => x.TotalAmount)
+                .FirstOrDefaultAsync();
+
+            var book = await GetByIdAsync(result.BookId);
+            var output = _mapper.Map<MostBookSalesDto>(book);
+
+            output.Amount = result.TotalAmount;
+
+            return output;
+        }
     }
 }

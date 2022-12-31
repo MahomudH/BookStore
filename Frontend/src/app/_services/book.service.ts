@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Book, CreateBookInput, UpdateBookInput } from '../Interfaces/Book';
+import { Book, CreateBookInput, MostBookSalesDto, UpdateBookInput } from '../Interfaces/Book';
 
 @Injectable({
   providedIn: 'root',
@@ -74,5 +74,9 @@ export class BookService {
 
   getLastSixBooks() {
     return this.http.get<Book[]>(this.baseUrl + 'Books/getLastBook');
+  }
+
+  getTheMostSoldBook(){
+    return this.http.get<MostBookSalesDto>(this.baseUrl+'Books/getMostBookSales');
   }
 }

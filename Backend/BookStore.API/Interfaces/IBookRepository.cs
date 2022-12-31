@@ -1,4 +1,5 @@
-﻿using BookStore.API.Models;
+﻿using BookStore.API.DTOs.Book;
+using BookStore.API.Models;
 
 namespace BookStore.API.Interfaces
 {
@@ -10,6 +11,7 @@ namespace BookStore.API.Interfaces
         Task<Book> UpdateAsync( Book book);
         Task<bool> DeleteAsync(int id);
         Task<List<Book>> GetLastSixBooks();
+        Task<MostBookSalesDto> GetTheMostSoldBook();
 
     }
 }

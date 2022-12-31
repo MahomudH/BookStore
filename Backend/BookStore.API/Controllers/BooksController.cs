@@ -101,5 +101,10 @@ namespace BookStore.API.Controllers
             return _mapper.Map<List<BookDto>>(books);
         }
 
+        [HttpGet("getMostBookSales")]
+        public async Task<MostBookSalesDto> GetTheMostBookSaled()
+        {
+            return await _bookRepository.GetTheMostSoldBook();
+        }
     }
 }

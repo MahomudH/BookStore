@@ -32,7 +32,7 @@ namespace BookStore.API.Helpers
             config.NewConfig<PublisherDto, Publisher>().TwoWays();
             config.NewConfig<CreatePublisherInput, Publisher>().Ignore(x => x.Logo);
             config.NewConfig<UpdateStaticPagesInput, Publisher>().Ignore(x => x.Logo);
-           
+
             config.NewConfig<Book, BookDto>()
                 .Map(dest => dest.AuthorName, src => src.AuthorFk.Name)
                 .Map(dest => dest.PublisherName, src => src.PublisherFk.Name)
@@ -40,9 +40,17 @@ namespace BookStore.API.Helpers
                 .Map(dest => dest.CategoryName, src => src.CategoryFk.Name)
                 .TwoWays();
 
+            config.NewConfig<Book, MostBookSalesDto>()
+                            .Map(dest => dest.AuthorName, src => src.AuthorFk.Name)
+                            .Map(dest => dest.PublisherName, src => src.PublisherFk.Name)
+                            .Map(dest => dest.TranslatorName, src => src.TranslatorFk.Name)
+                            .Map(dest => dest.CategoryName, src => src.CategoryFk.Name)
+                            .TwoWays();
+
+
             config.NewConfig<CreateBookInput, Book>();
 
-            config.NewConfig<CreateBookReviewInput,BookReview>();
+            config.NewConfig<CreateBookReviewInput, BookReview>();
 
             config.NewConfig<ZoneDto, Zone>().TwoWays();
             config.NewConfig<CreateZoneInput, Zone>();

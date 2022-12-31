@@ -1,1 +1,82 @@
-<p>main works!</p>
+
+<ng-container class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img [src]="mostSoldBook.image" class="card-img rounded-0 h-100" alt="most book sold">
+                    </div>
+                    <div class="col-md-8 d-inline-flex flex-column">
+                        <div class="card-body ">
+                            <h5 class="card-title fw-bold fs-6 border-bottom pb-2">بيانات الكتاب الاكثر مبيعا</h5>
+          
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <p>اسم الكتاب </p>
+                                    <p>سعر الكتاب </p>
+                                    <p>مقدار الخصم </p>
+                                    <p>المؤلف </p>
+                                    <p>الكمية المباعة</p>
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <p class="fw-bold">{{mostSoldBook.name}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.price}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.discount}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.authorName}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.amount}} كتاب</p>
+                                </div>
+                            </div>
+            
+                          
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text d-inline-block"><small class="text-muted">هناالتقييم</small></p>
+                            <button class="btn btn-outline-secondary btn-sm w-50 float-start" (click)="onShow()">عرض</button>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img [src]="mostSoldBook.image" class="card-img rounded-0 h-100" alt="most book sold">
+                    </div>
+                    <div class="col-md-8 d-inline-flex flex-column">
+                        <div class="card-body ">
+                            <h5 class="card-title fw-bold fs-6 border-bottom pb-2">بيانات الكتاب الاكثر طلبا</h5>
+          
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <p>اسم الكتاب </p>
+                                    <p>سعر الكتاب </p>
+                                    <p>مقدار الخصم </p>
+                                    <p>المؤلف </p>
+                                    <p>عدد مرات الطلب</p>
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <p class="fw-bold">{{mostSoldBook.name}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.price}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.discount}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.authorName}}</p>
+                                    <p class="fw-bold">{{mostSoldBook.amount}} كتاب</p>
+                                </div>
+                            </div>
+            
+                          
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text d-inline-block"><small class="text-muted">هناالتقييم</small></p>
+                            <button class="btn btn-outline-secondary btn-sm w-50 float-start" (click)="onShow()">عرض</button>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</ng-container>
+
