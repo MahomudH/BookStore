@@ -13,6 +13,8 @@ namespace BookStore.API.DTOs.Sale
         public string BookName { get; set; }
         public decimal BookPrice { get; set; }
         public string BookImage { get; set; }
+        public SaleStatusEnum SaleStatus { get; set; }
+        public DateTime SoldDate { get; set; }
 
     }
 }

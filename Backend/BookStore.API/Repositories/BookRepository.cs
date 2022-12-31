@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.API.Repositories
 {
-    public class BookRepository : IBookRepository
+    public class 
+        BookRepository : IBookRepository
     {
         private readonly BookStoreDbContext _context;
         private readonly IMapper _mapper;
@@ -83,6 +84,7 @@ namespace BookStore.API.Repositories
         public async Task<MostBookSalesDto> GetTheMostSoldBook()
         {
             var result = await _context.Sales
+                .Where(x=> x.SaleStatus == SaleStatusEnum.Sold)
                 .GroupBy(x => x.BookId)
                 .Select(x => new
                 {
@@ -92,12 +94,61 @@ namespace BookStore.API.Repositories
                 .OrderByDescending(x => x.TotalAmount)
                 .FirstOrDefaultAsync();
 
-            var book = await GetByIdAsync(result.BookId);
-            var output = _mapper.Map<MostBookSalesDto>(book);
+            var book = new Book();
 
-            output.Amount = result.TotalAmount;
+            if (result != null)
+            {
+                 book = await GetByIdAsync(result.BookId);
+                 var output = _mapper.Map<MostBookSalesDto>(book);
+                 output.Amount = result.TotalAmount;
 
-            return output;
+                 return output;
+            }
+            else
+            {
+                 book = await _context.Books.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+
+                 var output = _mapper.Map<MostBookSalesDto>(book);
+                 output.Amount = 0;
+
+                 return output;
+            }
+
+        }
+
+        public async Task<MostBookSalesDto> GetTheMostOrderBook()
+        {
+            var result = await _context.Sales
+                .Where(x => x.SaleStatus == SaleStatusEnum.Requested)
+                .GroupBy(x => x.BookId)
+                .Select(x => new
+                {
+                    BookId = x.Key,
+                    TotalAmount = x.Sum(s => s.Amount)
+                })
+                .OrderByDescending(x => x.TotalAmount)
+                .FirstOrDefaultAsync();
+
+            var book = new Book();
+
+            if (result != null)
+            {
+                book = await GetByIdAsync(result.BookId);
+                var output = _mapper.Map<MostBookSalesDto>(book);
+                output.Amount = result.TotalAmount;
+
+                return output;
+            }
+            else
+            {
+                book = await _context.Books.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+
+                var output = _mapper.Map<MostBookSalesDto>(book);
+                output.Amount = 0;
+
+                return output;
+            }
+
         }
     }
 }

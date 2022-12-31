@@ -11,7 +11,8 @@ import { ShowBookDetailsForAdminComponent } from '../book/show-book-details-for-
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-  mostSoldBook: MostBookSalesDto;
+  mostSoldBook= new MostBookSalesDto();
+  mostOrderedBook= new MostBookSalesDto();
 
   constructor(
     private _bookService: BookService,
@@ -20,6 +21,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTheMostSoldBook();
+    this.getTheMostOrderedBook();
   }
 
   getTheMostSoldBook() {
@@ -28,6 +30,19 @@ export class MainComponent implements OnInit {
         this.mostSoldBook = data;
         this.mostSoldBook.image =
           environment.baseUrlWithoutApi + 'Images/' + this.mostSoldBook.image;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  getTheMostOrderedBook() {
+    this._bookService.getTheMostOrderedBook().subscribe({
+      next: (data) => {
+        this.mostOrderedBook = data;
+        this.mostOrderedBook.image =
+          environment.baseUrlWithoutApi + 'Images/' + this.mostOrderedBook.image;
       },
       error: (error) => {
         console.log(error);
@@ -51,6 +66,26 @@ export class MainComponent implements OnInit {
         publisherName: this.mostSoldBook.publisherName,
         translatorName: this.mostSoldBook.translatorName,
         categoryName: this.mostSoldBook.categoryName,
+      },
+    });
+  }
+
+  onShowMostOrder() {
+    this.matDialog.open(ShowBookDetailsForAdminComponent, {
+      width: '50%',
+      data: {
+        updateMood: true,
+        name: this.mostOrderedBook.name,
+        price: this.mostOrderedBook.price,
+        image: this.mostOrderedBook.image,
+        discount: this.mostOrderedBook.discount,
+        about: this.mostOrderedBook.about,
+        publishYear: this.mostOrderedBook.publishYear,
+        pageCount: this.mostOrderedBook.pageCount,
+        authorName: this.mostOrderedBook.authorName,
+        publisherName: this.mostOrderedBook.publisherName,
+        translatorName: this.mostOrderedBook.translatorName,
+        categoryName: this.mostOrderedBook.categoryName,
       },
     });
   }

@@ -5,7 +5,7 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img [src]="mostSoldBook.image" class="card-img rounded-0 h-100" alt="most book sold">
+                        <img [src]="mostSoldBook.image" class="card-img rounded-0 h-100 rounded-end" alt="most book sold">
                     </div>
                     <div class="col-md-8 d-inline-flex flex-column">
                         <div class="card-body ">
@@ -43,7 +43,7 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img [src]="mostSoldBook.image" class="card-img rounded-0 h-100" alt="most book sold">
+                        <img [src]="mostOrderedBook.image" class="card-img rounded-0 h-100 rounded-end" alt="most book sold">
                     </div>
                     <div class="col-md-8 d-inline-flex flex-column">
                         <div class="card-body ">
@@ -58,11 +58,11 @@
                                     <p>عدد مرات الطلب</p>
                                 </div>
                                 <div class="mb-3 col-6">
-                                    <p class="fw-bold">{{mostSoldBook.name}}</p>
-                                    <p class="fw-bold">{{mostSoldBook.price}}</p>
-                                    <p class="fw-bold">{{mostSoldBook.discount}}</p>
-                                    <p class="fw-bold">{{mostSoldBook.authorName}}</p>
-                                    <p class="fw-bold">{{mostSoldBook.amount}} كتاب</p>
+                                    <p class="fw-bold">{{mostOrderedBook.name}}</p>
+                                    <p class="fw-bold">{{mostOrderedBook.price}}</p>
+                                    <p class="fw-bold">{{mostOrderedBook.discount}}</p>
+                                    <p class="fw-bold">{{mostOrderedBook.authorName}}</p>
+                                    <p class="fw-bold">{{mostOrderedBook.amount}} كتاب</p>
                                 </div>
                             </div>
             
@@ -70,7 +70,7 @@
                         </div>
                         <div class="card-footer">
                             <p class="card-text d-inline-block"><small class="text-muted">هناالتقييم</small></p>
-                            <button class="btn btn-outline-secondary btn-sm w-50 float-start" (click)="onShow()">عرض</button>
+                            <button class="btn btn-outline-secondary btn-sm w-50 float-start" (click)="onShowMostOrder()">عرض</button>
                         </div>
                     </div>
                 </div>

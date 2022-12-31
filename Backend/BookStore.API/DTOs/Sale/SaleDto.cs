@@ -11,5 +11,7 @@ namespace BookStore.API.DTOs.Sale
         public float TotalPrice { get; set; }
         public string UserId { get; set; }
         public int BookId { get; set; }
+        public SaleStatusEnum SaleStatus { get; set; }
+        public DateTime SoldDate { get; set; }
     }
 }

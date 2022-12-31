@@ -14,5 +14,7 @@ namespace BookStore.API.Models
         [ForeignKey("Book")]
         public int BookId { get; set; }
         public Book Book { get; set; }
+        public SaleStatusEnum SaleStatus { get; set; }
+        public DateTime SoldDate { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace BookStore.API.Interfaces
         Task<bool> DeleteAsync(int id);
         Task<List<Book>> GetLastSixBooks();
         Task<MostBookSalesDto> GetTheMostSoldBook();
+        Task<MostBookSalesDto> GetTheMostOrderBook();
 
     }
 }

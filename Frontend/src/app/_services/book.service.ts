@@ -79,4 +79,8 @@ export class BookService {
   getTheMostSoldBook(){
     return this.http.get<MostBookSalesDto>(this.baseUrl+'Books/getMostBookSales');
   }
+
+  getTheMostOrderedBook(){
+    return this.http.get<MostBookSalesDto>(this.baseUrl+'Books/getMostBookOrdered');
+  }
 }

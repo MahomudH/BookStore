@@ -57,6 +57,8 @@ namespace BookStore.API.Controllers
             var user = await _userManager.FindByEmailAsync(userEmail);
 
             sale.UserId = user.Id;
+            sale.SaleStatus= SaleStatusEnum.Requested;
+            sale.OrderDate= DateTime.Now;
 
             var result = await _saleRepository.AddAsync(sale);
             return result != null

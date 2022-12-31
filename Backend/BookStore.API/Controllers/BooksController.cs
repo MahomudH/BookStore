@@ -106,5 +106,11 @@ namespace BookStore.API.Controllers
         {
             return await _bookRepository.GetTheMostSoldBook();
         }
+
+        [HttpGet("getMostBookOrdered")]
+        public async Task<MostBookSalesDto> GetTheMostOrderedBook()
+        {
+            return await _bookRepository.GetTheMostOrderBook();
+        }
     }
 }
