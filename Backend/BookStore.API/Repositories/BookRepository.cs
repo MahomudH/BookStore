@@ -42,7 +42,7 @@ namespace BookStore.API.Repositories
             return book;
         }
 
-        public async Task<Book> UpdateAsync( Book book)
+        public async Task<Book> UpdateAsync(Book book)
         {
             var foundBook = await _context.Books.FindAsync(book.Id);
 

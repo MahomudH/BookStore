@@ -25,6 +25,7 @@ export class CreateOrEditBookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.data);
 
     this.CreateOrEditForm = new FormGroup({
       id: new FormControl(''),
@@ -43,6 +44,7 @@ export class CreateOrEditBookComponent implements OnInit {
 
     if (this.data.updateMood) {
       this.CreateOrEditForm.patchValue({
+        id: this.data.id,
         name: this.data.name,
         price: this.data.price,
         discount: this.data.discount,
@@ -50,7 +52,7 @@ export class CreateOrEditBookComponent implements OnInit {
         publishYear: this.data.publishYear,
         pageCount: this.data.pageCount,
         author: this.data.authorId,
-        publisher : this.data.publisherId,
+        publisher: this.data.publisherId,
         translator: this.data.translatorId,
         category: this.data.categoryId,
       });

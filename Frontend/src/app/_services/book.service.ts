@@ -50,12 +50,12 @@ export class BookService {
 
   updateBook(book: UpdateBookInput) {
     let formData = new FormData();
+    formData.append('Id', book.id.toString());
     formData.append('Name', book.name);
     formData.append('Price', book.price.toString());
     formData.append('Discount', book.discount.toString());
     formData.append('Image', book.image);
     formData.append('About', book.about);
-    formData.append('PublishYear', book.publishYear.toString());
     formData.append('PageCount', book.pageCount.toString());
     formData.append('AuthorId', book.authorId.toString());
     formData.append('PublisherId', book.publisherId.toString());

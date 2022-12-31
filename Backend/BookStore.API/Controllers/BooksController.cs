@@ -1,6 +1,9 @@
 ﻿using BookStore.API.DTOs.Book;
+using BookStore.API.DTOs.Publishers;
 using BookStore.API.Interfaces;
+using BookStore.API.Migrations;
 using BookStore.API.Models;
+using BookStore.API.Repositories;
 using BookStore.API.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -68,8 +71,18 @@ namespace BookStore.API.Controllers
 
         // PUT api/<BooksController>/5
         [HttpPut]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> UpdateBook([FromForm] UpdateBookInput input)
         {
+            var book = await _bookRepository.GetByIdAsync(input.Id);
+
+            _mapper.Map(input, book);
+            var imgNme = await _fileService.SaveFile(input.Image, "Images");
+            book.Image= imgNme;
+
+            var result = await _bookRepository.UpdateAsync(book);
+            return result != null
+                ? CreatedAtAction(nameof(GetAllBooks), new { id = result.Id }, result)
+                : BadRequest();
         }
 
         // DELETE api/<BooksController>/5
