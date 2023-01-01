@@ -9,7 +9,6 @@ import { SalesService } from 'src/app/_services/sales.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  numberOfSales = 10;
   isUserLogin = false;
 
 
@@ -17,7 +16,6 @@ export class CartComponent implements OnInit {
     private _salesService: SalesService,
     private authSerivce: AuthService,
     private router: Router,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -43,4 +41,5 @@ export class CartComponent implements OnInit {
   get isUserAdmin():boolean{
     return this.authSerivce.isUserAdmin();
   }
+
 }

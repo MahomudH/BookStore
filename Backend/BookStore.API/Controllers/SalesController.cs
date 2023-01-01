@@ -107,6 +107,17 @@ namespace BookStore.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getUserOrdersNumber")]
+        public async Task<IActionResult> GetNumberOfAllOrdersForUser()
+        {
+            var userEmail = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)!.Value;
+
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            var result = await _saleRepository.GetNumberOfAllOrdersForUser(user.Id);
+       
+            return Ok(result);
+        }
+
 
         [HttpPut("agreeSold")]
         public async Task AgreeSold([FromBody] int saleId)

@@ -77,6 +77,12 @@ namespace BookStore.API.Repositories
                 .ToListAsync();
         }
 
+        public async Task<int> GetNumberOfAllOrdersForUser(string userId)
+        {
+            return await _context.Sales
+                .CountAsync(x => x.UserId == userId && x.SaleStatus == SaleStatusEnum.Requested);
+        }
+
         public async Task AgreeSold(int saleId)
         {
             var sale = await _context.Sales.FirstOrDefaultAsync(x => x.Id == saleId);

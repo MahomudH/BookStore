@@ -13,13 +13,15 @@ import { Book } from '../Interfaces/Book';
 })
 export class SalesService {
   private baseURL = environment.baseUrl + 'Sales';
-  private numberOfSales = 0;
+  private numberOfOrders = 0;
   sales: ShowSalesForAdminDto[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getNumberOfOrdersForUser();
+  }
 
   buyBook(sale: BuyBookInput) {
-    this.numberOfSales++;
+    this.numberOfOrders++;
     return this.http.post<Book>(this.baseURL, sale);
   }
 
@@ -28,7 +30,9 @@ export class SalesService {
   }
 
   getAllOrdersForUser() {
-    return this.http.get<ShowSalesForUserDto[]>(this.baseURL + '/getUserOrders');
+    return this.http.get<ShowSalesForUserDto[]>(
+      this.baseURL + '/getUserOrders'
+    );
   }
 
   getAllSalesForAdmin() {
@@ -45,12 +49,20 @@ export class SalesService {
     });
   }
 
+  getNumberOfOrdersForUser() {
+    return this.http
+      .get<number>(this.baseURL + '/getUserOrdersNumber')
+      .subscribe((result) => {
+        this.numberOfOrders = result;
+      });
+  }
+
   getNumberOfSales() {
-    return this.numberOfSales;
+    return this.numberOfOrders;
   }
 
   addNumberOfSales() {
-    this.numberOfSales++;
+    this.numberOfOrders++;
   }
 
   agreeSale(saleId: number) {
@@ -60,4 +72,6 @@ export class SalesService {
   rejectSale(saleId: number) {
     return this.http.put(this.baseURL + '/rejectSold', saleId);
   }
+
+
 }
