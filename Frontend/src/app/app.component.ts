@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { LoginOrRegisterPageService } from './_services/login-or-register-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent{
+export class AppComponent {
   title = 'BookStore';
 
-  constructor(
-    private loginOrRegisterPageService: LoginOrRegisterPageService,
-  ) {}
-  
-  get isRouterLoginOrRegister(){
-    return this.loginOrRegisterPageService.getIsThisPageLoginOrRegister();
+  constructor(private route: Router) {}
+
+  get isRouterLoginOrRegister() {
+    // if (this.route.url.match('auth')) {
+    //   return true;
+    // }
+    return false;
   }
 }

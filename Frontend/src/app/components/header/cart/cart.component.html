@@ -1,23 +1,34 @@
-<div class="row" *ngIf="isUserLogin">
-    <div class="col-md-8">
-        <a routerLink="user/profile">
-            <img src="assets/icons/333.png" width="30" alt="my-account">
-            <label class="text-black fs-5" style="cursor: pointer;">حسابي</label></a>
+<div class="row h-100" *ngIf="isUserLogin">
+
+    <div class="col-md-6 ">
+        <button class="btn btn-outline-success " routerLink="user/profile">
+            <i class="fa fa-user-o" aria-hidden="true"></i>
+            <label class="mx-2">حسابي</label></button>
     </div>
 
-    <div class="col-md-4 " style="position: relative;">
-        <a routerLink="user/purchases">
-            <img src="assets/icons/4.png" width="40" alt="my-account">
-        </a>
-        <label class="text-white" style="position: absolute; top: 1px; right: 16px;">{{numberOfsales}}</label>
+    <div class="col-md-3 " style="position: relative;">
+        <button type="button" class="btn btn-success position-relative" routerLink="user/purchases">
+            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{numberOfsales}}
+            </span>
+        </button>
     </div>
+
+    <div class="col-md-2 " style="position: relative;">
+        <button type="button" class="btn btn-outline-danger position-relative" (click)="logout()">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </button>
+    </div>
+
 </div>
 
 <div class="row" *ngIf="!isUserLogin">
     <div class="col-md-4">
-        <button class="btn btn-outline-success text-nowrap" routerLink="/auth/login" (click)="changLoginORRegister()">دخول</button>
+        <button class="btn btn-outline-success text-nowrap" routerLink="/auth/login">دخول</button>
     </div>
     <div class="col-md-8">
-        <button class="btn btn-success text-nowrap" routerLink="/auth/register" (click)="changLoginORRegister()">إنشاء حساب</button>
+        <button class="btn btn-success text-nowrap" routerLink="/auth/register" >إنشاء
+            حساب</button>
     </div>
 </div>

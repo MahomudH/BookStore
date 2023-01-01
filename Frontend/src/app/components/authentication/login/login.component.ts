@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { LoginRequest } from 'src/app/Interfaces/AuthenticationRequest';
 import { AuthService } from 'src/app/_services/auth.service';
 
-
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   showError: boolean;
@@ -48,11 +49,11 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginUser(userForAuth).subscribe({
       next: (data) => {
-        console.log(data);
         var returnUrl = this.route.snapshot.queryParams['returnUrl'];
         if (returnUrl) this.router.navigate([returnUrl]);
         else this.router.navigate(['/']);
         this.authService.saveToken(data);
+        this.toastr.success("مرحبا بك في مكتبتي");
       },
       error: (error) => {
         console.log(error);
