@@ -10,6 +10,7 @@ namespace BookStore.API.Interfaces
         Task<Sale> UpdateAsync(Sale sale);
         Task<bool> DeleteAsync(int id);
         Task<List<Sale>> GetAllSalesForUser(string userId);
+        Task<List<Sale>> GetAllOrdersForUser(string userId);
         Task AgreeSold(int saleId);
         Task RejectSold(int saleId);
     }

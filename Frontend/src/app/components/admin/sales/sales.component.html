@@ -43,10 +43,10 @@
             <td>{{ sale.orderDate | date:'MMM d, y'}} </td>
             <td>{{ sale.userName }}</td>
             <td>
-              <span class="badge text-bg-primary" *ngIf="sale.saleStatus == 1">تم طلبه</span>
-              <span class="badge text-bg-success" *ngIf="sale.saleStatus == 2">تم البيع</span>
-              <span class="badge text-bg-danger" *ngIf="sale.saleStatus == 3">تم الرفض</span>
-              <span class="badge text-bg-danger" *ngIf="sale.saleStatus == 4">تم اعادته</span>
+              <span class="badge text-bg-primary bs-datepicker" *ngIf="sale.saleStatus == 1">تم طلبه</span>
+              <span class="badge text-bg-success bs-datepicker" *ngIf="sale.saleStatus == 2">تم البيع</span>
+              <span class="badge text-bg-danger bs-datepicker" *ngIf="sale.saleStatus == 3">تم الرفض</span>
+              <span class="badge text-bg-danger bs-datepicker" *ngIf="sale.saleStatus == 4">تم اعادته</span>
             </td>
             <td>{{ sale.soldDate | date:'MMM d, y'}}</td>
             <td class="text-start">

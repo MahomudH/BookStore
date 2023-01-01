@@ -27,6 +27,10 @@ export class SalesService {
     return this.http.get<ShowSalesForUserDto[]>(this.baseURL + '/getUsersales');
   }
 
+  getAllOrdersForUser() {
+    return this.http.get<ShowSalesForUserDto[]>(this.baseURL + '/getUserOrders');
+  }
+
   getAllSalesForAdmin() {
     return this.http.get<ShowSalesForAdminDto[]>(this.baseURL).subscribe({
       next: (data) => {

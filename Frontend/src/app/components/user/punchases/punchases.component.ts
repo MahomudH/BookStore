@@ -18,7 +18,7 @@ export class PunchasesComponent implements OnInit {
   }
 
   getAllSales() {
-    this._saleService.getAllSalesForUser().subscribe({
+    this._saleService.getAllOrdersForUser().subscribe({
       next: (response) => {
         this.sales=response.map(item =>{
           return{

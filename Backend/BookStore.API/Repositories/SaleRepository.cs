@@ -61,6 +61,17 @@ namespace BookStore.API.Repositories
         {
             return  await _context.Sales
                 .Where(x => x.UserId == userId)
+                .Where(x => x.SaleStatus == SaleStatusEnum.Requested)
+                .Include(x => x.Book)
+                .OrderByDescending(x => x.OrderDate)
+                .ToListAsync();
+        }
+
+        public async Task<List<Sale>> GetAllOrdersForUser(string userId)
+        {
+            return  await _context.Sales
+                .Where(x => x.UserId == userId)
+                .Where(x => x.SaleStatus != SaleStatusEnum.Requested)
                 .Include(x => x.Book)
                 .OrderByDescending(x => x.OrderDate)
                 .ToListAsync();

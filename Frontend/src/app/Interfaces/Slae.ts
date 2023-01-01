@@ -13,6 +13,7 @@ export class ShowSalesForUserDto {
   id: number;
   orderDate: Date;
   totalPrice: number;
+  saleStatus: number;
 }
 
 export class ShowSalesForAdminDto {

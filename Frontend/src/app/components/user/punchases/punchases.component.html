@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let sale of sales; index as i">
+      <tr *ngFor="let sale of sales; index as i" class="align-middle">
         <td>{{ i + 1 }}</td>
         <td><img [src]="sale.bookImage" alt="book" width="50" /></td>
         <td>{{ sale.bookName }}</td>
@@ -20,19 +20,11 @@
         <td>{{sale.orderDate  | date:'longDate' }}</td>
         <td>{{ sale.amount }}</td>
         <td>{{ sale.totalPrice }}</td>
-        <td class="text-start">
-          <button
-            class="btn btn-danger btn-sm ms-2"
-          
-          >
-            حذف
-          </button>
-          <button class="btn btn-success btn-sm ms-2" >
-            تعديل
-          </button>
-          <button class="btn btn-primary btn-sm ms-2" >
-            عرض
-          </button>
+        <td>
+          <span class="badge text-bg-primary fs-6 bs-datepicker" *ngIf="sale.saleStatus == 1">تم طلبه</span>
+          <span class="badge text-bg-success fs-6 bs-datepicker" *ngIf="sale.saleStatus == 2">تم شراؤه</span>
+          <span class="badge text-bg-danger fs-6 bs-datepicker" *ngIf="sale.saleStatus == 3">تم رفض بيعه</span>
+          <span class="badge text-bg-danger fs-6 bs-datepicker" *ngIf="sale.saleStatus == 4">تم اعادته</span>
         </td>
       </tr>
     </tbody>

@@ -96,6 +96,17 @@ namespace BookStore.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getUserOrders")]
+        public async Task<IActionResult> GetAllOrdersForUser()
+        {
+            var userEmail = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)!.Value;
+
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            var sales = await _saleRepository.GetAllOrdersForUser(user.Id);
+            var result = _mapper.Map<ShowSalesForUserDto[]>(sales);
+            return Ok(result);
+        }
+
 
         [HttpPut("agreeSold")]
         public async Task AgreeSold([FromBody] int saleId)
