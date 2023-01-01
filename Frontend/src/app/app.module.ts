@@ -45,6 +45,8 @@ import { PunchasesComponent } from './components/user/punchases/punchases.compon
 import { MainComponent } from './components/admin/main/main.component';
 import { ShowBookDetailsForAdminComponent } from './components/admin/book/show-book-details-for-admin/show-book-details-for-admin.component';
 import { SalesComponent } from './components/admin/sales/sales.component';
+import { MyFavsComponent } from './components/user/my-favs/my-favs.component';
+import { MyOrdersComponent } from './components/user/my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import { SalesComponent } from './components/admin/sales/sales.component';
     MainComponent,
     ShowBookDetailsForAdminComponent,
     SalesComponent,
+    MyFavsComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,

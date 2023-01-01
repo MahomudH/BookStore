@@ -12,9 +12,9 @@ export class AppComponent {
   constructor(private route: Router) {}
 
   get isRouterLoginOrRegister() {
-    // if (this.route.url.match('auth')) {
-    //   return true;
-    // }
+    if (this.route.url.match('auth')) {
+      return true;
+    }
     return false;
   }
 }

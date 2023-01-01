@@ -1,7 +1,10 @@
 <div class="row h-100" *ngIf="isUserLogin">
 
     <div class="col-md-6 ">
-        <button class="btn btn-outline-success " routerLink="user/profile">
+        <button class="btn btn-outline-success "  *ngIf="isUserAdmin" routerLink="admin">
+            <i class="fa fa-user-o" aria-hidden="true"></i>
+            <label class="mx-2">حسابي</label></button>
+        <button class="btn btn-outline-success "  *ngIf="!isUserAdmin" routerLink="user/profile">
             <i class="fa fa-user-o" aria-hidden="true"></i>
             <label class="mx-2">حسابي</label></button>
     </div>

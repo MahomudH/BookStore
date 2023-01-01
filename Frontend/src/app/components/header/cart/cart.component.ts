@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { SalesService } from 'src/app/_services/sales.service';
 
@@ -12,11 +12,12 @@ export class CartComponent implements OnInit {
   numberOfSales = 10;
   isUserLogin = false;
 
+
   constructor(
     private _salesService: SalesService,
     private authSerivce: AuthService,
-    private router : Router,
-    private route:ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -33,9 +34,13 @@ export class CartComponent implements OnInit {
       : (this.isUserLogin = true);
   }
 
-  logout(){
+  logout() {
     this.authSerivce.logout();
     this.router.navigate(['/']);
     this.isUserLoginOrNot();
+  }
+
+  get isUserAdmin():boolean{
+    return this.authSerivce.isUserAdmin();
   }
 }

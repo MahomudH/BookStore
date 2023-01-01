@@ -22,6 +22,8 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
 import { PunchasesComponent } from './components/user/punchases/punchases.component';
 import { MainComponent } from './components/admin/main/main.component';
 import { SalesComponent } from './components/admin/sales/sales.component';
+import { MyFavsComponent } from './components/user/my-favs/my-favs.component';
+import { MyOrdersComponent } from './components/user/my-orders/my-orders.component';
 
 const routes: Routes = [
   {
@@ -53,6 +55,8 @@ const routes: Routes = [
     children: [
       { path: 'profile', component: UserProfileComponent },
       { path: 'purchases', component: PunchasesComponent },
+      { path: 'favs', component: MyFavsComponent },
+      { path: 'orders', component: MyOrdersComponent },
       
     ],
   },
