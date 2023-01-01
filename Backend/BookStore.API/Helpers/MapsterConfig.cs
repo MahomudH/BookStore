@@ -47,7 +47,6 @@ namespace BookStore.API.Helpers
                             .Map(dest => dest.CategoryName, src => src.CategoryFk.Name)
                             .TwoWays();
 
-
             config.NewConfig<CreateBookInput, Book>();
 
             config.NewConfig<CreateBookReviewInput, BookReview>();
@@ -65,6 +64,13 @@ namespace BookStore.API.Helpers
                 .Map(dest => dest.BookName, src => src.Book.Name)
                 .Map(dest => dest.BookPrice, src => src.Book.Price)
                 .Map(dest => dest.BookImage, src => src.Book.Image)
+                .TwoWays();
+
+            config.NewConfig<Sale, ShowSalesForAdminDto>()
+                .Map(dest => dest.BookName, src => src.Book.Name)
+                .Map(dest => dest.BookPrice, src => src.Book.Price)
+                .Map(dest => dest.BookImage, src => src.Book.Image)
+                .Map(dest => dest.UserName, src => (src.User.FirstName + src.User.LastName) ?? src.User.Email)
                 .TwoWays();
 
         }

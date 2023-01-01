@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { SalesService } from './_services/sales.service';
 import { LoginOrRegisterPageService } from './_services/login-or-register-page.service';
 
 @Component({
@@ -10,11 +8,9 @@ import { LoginOrRegisterPageService } from './_services/login-or-register-page.s
 })
 export class AppComponent{
   title = 'BookStore';
- 
 
   constructor(
     private loginOrRegisterPageService: LoginOrRegisterPageService,
-    private route: ActivatedRoute
   ) {}
   
   get isRouterLoginOrRegister(){

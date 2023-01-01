@@ -14,3 +14,18 @@ export class ShowSalesForUserDto {
   orderDate: Date;
   totalPrice: number;
 }
+
+export class ShowSalesForAdminDto {
+  id: number;
+  amount: number;
+  orderDate: Date;
+  totalPrice: number;
+  userId: string;
+  userName: string;
+  bookId: number;
+  bookName: string;
+  bookImage: string;
+  bookPrice: number;
+  saleStatus: number;
+  soldDate: Date;
+}

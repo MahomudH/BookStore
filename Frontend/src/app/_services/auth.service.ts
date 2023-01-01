@@ -41,6 +41,8 @@ export class AuthService {
   }
 
   isUserAdmin() {
+    console.log('check');
+    
     const role = this.getFieldFromJWT(
       'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
     );

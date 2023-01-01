@@ -44,6 +44,7 @@ import { UserDashboardComponent } from './components/user/user-dashboard/user-da
 import { PunchasesComponent } from './components/user/punchases/punchases.component';
 import { MainComponent } from './components/admin/main/main.component';
 import { ShowBookDetailsForAdminComponent } from './components/admin/book/show-book-details-for-admin/show-book-details-for-admin.component';
+import { SalesComponent } from './components/admin/sales/sales.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { ShowBookDetailsForAdminComponent } from './components/admin/book/show-b
     PunchasesComponent,
     MainComponent,
     ShowBookDetailsForAdminComponent,
+    SalesComponent,
   ],
   imports: [
     BrowserModule,

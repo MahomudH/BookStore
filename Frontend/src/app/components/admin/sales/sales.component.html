@@ -1,0 +1,66 @@
+<ng-container class="container mt-5">
+  <div class="row d-flex-inline justify-content-between my-3 border-bottom pb-2">
+    <div class="fs-5 w-25">ادارة الكتب</div>
+  </div>
+
+  <div class="alert alert-success fs-5">
+
+    <li class="mb-3">
+      <label>زر <span class="badge text-bg-success">موافقة</span> من اجل الموافقة على طلب الشراء</label>
+    </li>
+    <li >
+      <label>
+        زر <span class="badge text-bg-danger">رفض</span> من اجل رفض البيع </label>
+    </li>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 border-start border-2">
+      <table class="table table-striped table-bordered text-center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">صورة الكتاب</th>
+            <th scope="col">الكتاب</th>
+            <th scope="col">سعر الكتاب</th>
+            <th scope="col">الكمية المطلوبة</th>
+            <th scope="col">المبلغ الكلي</th>
+            <th scope="col">تاريخ الطلب</th>
+            <th scope="col">المشتري</th>
+            <th scope="col">حالة الطلب</th>
+            <th scope="col">تاريخ الموافقة/الرفض</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sale of sales; index as i" class="align-middle">
+            <td>{{ i + 1 }}</td>
+            <td><img [src]="sale.bookImage" alt="book" width="50" /></td>
+            <td>{{ sale.bookName }}</td>
+            <td class="fw-bold">{{ sale.bookPrice }}</td>
+            <td>{{ sale.amount }}</td>
+            <td>{{ sale.totalPrice }}</td>
+            <td>{{ sale.orderDate | date:'MMM d, y'}} </td>
+            <td>{{ sale.userName }}</td>
+            <td>
+              <span class="badge text-bg-primary" *ngIf="sale.saleStatus == 1">تم طلبه</span>
+              <span class="badge text-bg-success" *ngIf="sale.saleStatus == 2">تم البيع</span>
+              <span class="badge text-bg-danger" *ngIf="sale.saleStatus == 3">تم الرفض</span>
+              <span class="badge text-bg-danger" *ngIf="sale.saleStatus == 4">تم اعادته</span>
+            </td>
+            <td>{{ sale.soldDate | date:'MMM d, y'}}</td>
+            <td class="text-start">
+              <button class="btn btn-success btn-sm ms-2" [disabled]="sale.saleStatus != 1" (click)="onAgree(i)">
+                موافقة
+              </button>
+
+              <button class="btn btn-danger btn-sm ms-2" [disabled]="sale.saleStatus != 1" (click)="onReject(i)">
+                رفض
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>

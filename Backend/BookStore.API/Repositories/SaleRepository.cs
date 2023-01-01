@@ -16,6 +16,7 @@ namespace BookStore.API.Repositories
         public async Task<List<Sale>> GetAllAsync()
         {
             return await _context.Sales
+                .OrderByDescending(x => x.OrderDate)
                 .Include(x => x.Book)
                 .Include(x => x.User)
                 .ToListAsync();
@@ -63,6 +64,22 @@ namespace BookStore.API.Repositories
                 .Include(x => x.Book)
                 .OrderByDescending(x => x.OrderDate)
                 .ToListAsync();
+        }
+
+        public async Task AgreeSold(int saleId)
+        {
+            var sale = await _context.Sales.FirstOrDefaultAsync(x => x.Id == saleId);
+            sale.SaleStatus = SaleStatusEnum.Sold;
+            sale.SoldDate=DateTime.Now;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RejectSold(int saleId)
+        {
+            var sale = await _context.Sales.FirstOrDefaultAsync(x => x.Id == saleId);
+            sale.SaleStatus = SaleStatusEnum.Rejected;
+            sale.SoldDate=DateTime.Now;
+            await _context.SaveChangesAsync();
         }
     }
 }

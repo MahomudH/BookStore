@@ -29,12 +29,16 @@ namespace BookStore.API.Controllers
             _mapper = mapper;
             _userManager = userManager;
         }
+
         // GET: api/<SalesController>
         [HttpGet]
         public async Task<IActionResult> GetAllSales()
         {
-            return Ok(await _saleRepository.GetAllAsync());
+            var sales = await _saleRepository.GetAllAsync();
+            var result = _mapper.Map<List<ShowSalesForAdminDto>>(sales);
+            return Ok(result);
         }
+
         // GET api/<SalesController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<SaleDto>> GetAuthorById(int id)
@@ -57,8 +61,8 @@ namespace BookStore.API.Controllers
             var user = await _userManager.FindByEmailAsync(userEmail);
 
             sale.UserId = user.Id;
-            sale.SaleStatus= SaleStatusEnum.Requested;
-            sale.OrderDate= DateTime.Now;
+            sale.SaleStatus = SaleStatusEnum.Requested;
+            sale.OrderDate = DateTime.Now;
 
             var result = await _saleRepository.AddAsync(sale);
             return result != null
@@ -91,5 +95,20 @@ namespace BookStore.API.Controllers
             var result = _mapper.Map<ShowSalesForUserDto[]>(sales);
             return Ok(result);
         }
+
+
+        [HttpPut("agreeSold")]
+        public async Task AgreeSold([FromBody] int saleId)
+        {
+            await _saleRepository.AgreeSold(saleId);
+        }
+
+
+        [HttpPut("rejectSold")]
+        public async Task RejectSold([FromBody] int saleId)
+        {
+            await _saleRepository.RejectSold(saleId);
+        }
+
     }
 }

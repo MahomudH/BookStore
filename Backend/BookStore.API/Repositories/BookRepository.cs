@@ -119,7 +119,7 @@ namespace BookStore.API.Repositories
         public async Task<MostBookSalesDto> GetTheMostOrderBook()
         {
             var result = await _context.Sales
-                .Where(x => x.SaleStatus == SaleStatusEnum.Requested)
+                //.Where(x => x.SaleStatus != SaleStatusEnum.Sold)
                 .GroupBy(x => x.BookId)
                 .Select(x => new
                 {

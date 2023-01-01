@@ -21,6 +21,7 @@ import { UserDashboardComponent } from './components/user/user-dashboard/user-da
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { PunchasesComponent } from './components/user/punchases/punchases.component';
 import { MainComponent } from './components/admin/main/main.component';
+import { SalesComponent } from './components/admin/sales/sales.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'book', component: BookComponent },
       { path: 'zone', component: ZoneComponent },
       { path: 'staticPage', component: StaticPageComponent },
+      { path: 'sales', component: SalesComponent },
     ],
   },
   {
@@ -60,7 +62,7 @@ const routes: Routes = [
   { path: 'auth/register', component: RegisterComponent},
   {path: 'auth/forbidden', component: ForbiddenComponent},
   {path: 'aboutus', component: AboutUsComponent},
-  {path:'**',redirectTo:''}
+  {path:'**',component: HomeComponent}
 ];
 
 @NgModule({
