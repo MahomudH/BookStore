@@ -55,4 +55,9 @@ export class PublisherService {
       this.baseUrl + 'Publishers/' + publisherId
     );
   }
+
+  getLastSixPublisher() {
+    return this.http.get<Publisher[]>(this.baseUrl + 'Publishers/getLastPublisher');
+  }
+  
 }

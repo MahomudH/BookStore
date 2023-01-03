@@ -1,4 +1,5 @@
-﻿using BookStore.API.DTOs.Category;
+﻿using BookStore.API.DTOs.Book;
+using BookStore.API.DTOs.Category;
 using BookStore.API.DTOs.Publishers;
 using BookStore.API.Interfaces;
 using BookStore.API.Models;
@@ -81,6 +82,13 @@ namespace BookStore.API.Controllers
         {
             var result = await _publisherRepository.DeleteAsync(id);
             return Ok(result);
+        }
+
+        [HttpGet("getLastPublisher")]
+        public async Task<List<Publisher>> GetLastSixBooks()
+        {
+            return await _publisherRepository.GetLastSixPublisher();
+
         }
     }
 }

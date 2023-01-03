@@ -54,5 +54,13 @@ namespace BookStore.API.Repositories
 
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<List<Publisher>> GetLastSixPublisher()
+        {
+            return await _context.Publishers
+                .OrderByDescending(x => x.Id)
+                .Take(6)
+                .ToListAsync();
+        }
     }
 }

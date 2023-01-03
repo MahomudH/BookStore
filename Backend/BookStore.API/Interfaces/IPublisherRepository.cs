@@ -9,5 +9,6 @@ namespace BookStore.API.Interfaces
         Task<Publisher> AddAsync(Publisher publisher);
         Task<Publisher> UpdateAsync(Publisher publisher);
         Task<bool> DeleteAsync(int id);
+        Task<List<Publisher>> GetLastSixPublisher();
     }
 }

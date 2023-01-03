@@ -47,6 +47,7 @@ import { ShowBookDetailsForAdminComponent } from './components/admin/book/show-b
 import { SalesComponent } from './components/admin/sales/sales.component';
 import { MyFavsComponent } from './components/user/my-favs/my-favs.component';
 import { MyOrdersComponent } from './components/user/my-orders/my-orders.component';
+import { NewPublisherComponent } from './components/new-publisher/new-publisher.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { MyOrdersComponent } from './components/user/my-orders/my-orders.compone
     SalesComponent,
     MyFavsComponent,
     MyOrdersComponent,
+    NewPublisherComponent,
   ],
   imports: [
     BrowserModule,
