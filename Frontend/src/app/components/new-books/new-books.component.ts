@@ -8,24 +8,16 @@ import { environment } from 'src/environments/environment';
   templateUrl: './new-books.component.html',
 })
 export class NewBooksComponent implements OnInit {
-  books: Book[];
 
-  constructor(private bookService: BookService) {}
+  constructor(private _bookService: BookService) {}
 
   ngOnInit(): void {
-    this.getBooks();
+    this._bookService.getLastSixBooks();
   }
 
-  getBooks(){
-    this.bookService.getLastSixBooks().subscribe({
-      next: response => {
-        this.books = response.map((item) => {
-          return {
-            ...item,
-            image: environment.baseUrlWithoutApi + 'Images/' + item.image,
-          };  
-        });
-      }
-    });
+  get books(): Book[] {
+    return this._bookService.newBooks;
   }
+
+ 
 }

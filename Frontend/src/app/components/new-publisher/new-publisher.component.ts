@@ -8,25 +8,15 @@ import { environment } from 'src/environments/environment';
   templateUrl: './new-publisher.component.html',
 })
 export class NewPublisherComponent implements OnInit {
-  publishers: Publisher[];
 
   constructor(private _publisherService: PublisherService) {}
 
   ngOnInit(): void {
-    this.getPublishers();
+    this._publisherService.getLastSixPublisher();
   }
 
-  getPublishers() {
-    this._publisherService.getLastSixPublisher().subscribe({
-      next: (response) => {
-  
-        this.publishers = response.map((item) => {
-          return {
-            ...item,
-            logo: environment.baseUrlWithoutApi + 'Images/' + item.logo,
-          };
-        });
-      },
-    });
+  get publishers(): Publisher[] {
+    return this._publisherService.newPublishers;
   }
+
 }

@@ -15,6 +15,7 @@ import { of } from 'rxjs';
 export class BookService {
   baseUrl = environment.baseUrl;
   books: Book[] = [];
+  newBooks:Book[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -82,7 +83,17 @@ export class BookService {
   }
 
   getLastSixBooks() {
-    return this.http.get<Book[]>(this.baseUrl + 'Books/getLastBook');
+    if (this.newBooks.length > 0) return of(this.newBooks);
+    return this.http.get<Book[]>(this.baseUrl + 'Books/getLastBook').subscribe({
+      next: (data) => {
+        this.newBooks = data.map((item) => {
+          return {
+            ...item,
+            image: environment.baseUrlWithoutApi + 'Images/' + item.image,
+          };
+        });
+      },
+    });
   }
 
   getTheMostSoldBook() {
