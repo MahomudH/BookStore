@@ -1,18 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Book, CreateBookInput, MostBookSalesDto, UpdateBookInput } from '../Interfaces/Book';
+import {
+  Book,
+  CreateBookInput,
+  MostBookSalesDto,
+  UpdateBookInput,
+} from '../Interfaces/Book';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
   baseUrl = environment.baseUrl;
-  books: Book[];
+  books: Book[] = [];
 
   constructor(private http: HttpClient) {}
 
   getBooks(filter: string) {
+    if (this.books.length > 0) return of(this.books);
     return this.http.get<Book[]>(this.baseUrl + 'Books/' + filter).subscribe({
       next: (data) => {
         this.books = data.map((item) => {
@@ -26,6 +33,8 @@ export class BookService {
   }
 
   getBookById(bookId: number) {
+    // const book = this.books.find((x) => x.id === bookId);
+    // if(book !== undefined) return of(book);
     return this.http.get<Book>(this.baseUrl + 'Books/' + bookId);
   }
 
@@ -76,11 +85,15 @@ export class BookService {
     return this.http.get<Book[]>(this.baseUrl + 'Books/getLastBook');
   }
 
-  getTheMostSoldBook(){
-    return this.http.get<MostBookSalesDto>(this.baseUrl+'Books/getMostBookSales');
+  getTheMostSoldBook() {
+    return this.http.get<MostBookSalesDto>(
+      this.baseUrl + 'Books/getMostBookSales'
+    );
   }
 
-  getTheMostOrderedBook(){
-    return this.http.get<MostBookSalesDto>(this.baseUrl+'Books/getMostBookOrdered');
+  getTheMostOrderedBook() {
+    return this.http.get<MostBookSalesDto>(
+      this.baseUrl + 'Books/getMostBookOrdered'
+    );
   }
 }
