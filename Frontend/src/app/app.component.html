@@ -1,7 +1,10 @@
-<div class="container-fluid mt-5"  *ngIf="!isRouterLoginOrRegister">
+<ngx-spinner>
+  <h3>loading ...</h3>
+</ngx-spinner>
+<div class="container-fluid mt-5" *ngIf="!isRouterLoginOrRegister">
 
-  <header >
-    <app-header></app-header >
+  <header>
+    <app-header></app-header>
   </header>
 
   <div class="row">
@@ -20,6 +23,6 @@
 
 </div>
 
-<div class="container-fluid d-flex"  *ngIf="isRouterLoginOrRegister" class="login-register">
-      <router-outlet></router-outlet>
+<div class="container-fluid d-flex" *ngIf="isRouterLoginOrRegister" class="login-register">
+  <router-outlet></router-outlet>
 </div>

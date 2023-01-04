@@ -48,6 +48,8 @@ import { SalesComponent } from './components/admin/sales/sales.component';
 import { MyFavsComponent } from './components/user/my-favs/my-favs.component';
 import { MyOrdersComponent } from './components/user/my-orders/my-orders.component';
 import { NewPublisherComponent } from './components/new-publisher/new-publisher.component';
+import { LoadingInterceptor } from './_services/loading.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -103,12 +105,18 @@ import { NewPublisherComponent } from './components/new-publisher/new-publisher.
       positionClass: 'toast-top-left',
     }),
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     },
   ],
