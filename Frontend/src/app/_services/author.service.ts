@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Author } from '../Interfaces/Author';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class AuthorService {
   constructor(private http: HttpClient) {}
 
   getAuthors() {
+    if (this.authors.length > 0) return of(this.authors);
     return this.http.get<Author[]>(this.baseUrl + 'Author').subscribe({
       next: (result) => {
         this.authors = result;

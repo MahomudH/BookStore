@@ -15,6 +15,7 @@ export class PublisherService {
   constructor(private http: HttpClient) {}
 
   getPublishers() {
+    if (this.publishers.length > 0) return of(this.publishers);
     return this.http.get<Publisher[]>(this.baseUrl + 'Publishers').subscribe({
       next: (result) => {
         this.publishers = result.map((item) => {

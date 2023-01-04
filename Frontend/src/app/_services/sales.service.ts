@@ -7,6 +7,7 @@ import {
   ShowSalesForUserDto,
 } from '../Interfaces/Slae';
 import { Book } from '../Interfaces/Book';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,7 @@ export class SalesService {
   }
 
   getAllSalesForAdmin() {
+    if (this.sales.length > 0) return of(this.sales);
     return this.http.get<ShowSalesForAdminDto[]>(this.baseURL).subscribe({
       next: (data) => {
         this.sales = data.map((item) => {

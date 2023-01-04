@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Translator } from '../Interfaces/Translator';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class TranslatorService {
   constructor(private http: HttpClient) {}
 
   getTranslators() {
+    if (this.translators.length > 0) return of(this.translators);
     return this.http.get<Translator[]>(this.baseUrl + 'Translator').subscribe({
       next: (result) => {
         this.translators = result;
