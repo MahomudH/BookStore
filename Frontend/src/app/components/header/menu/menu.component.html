@@ -1,20 +1,20 @@
-
-    <nav>
-        <ul class="pe-3">
-            <li class="menu ">
-                <a href="#" class="pb-2 px-3 pt-0">جميع الأقسام<i class="fa fa-caret-down me-3"
-                        aria-hidden="true"></i></a>
-                <ul class="dropdown ">
-                    <li><a>قسم تجريبي1</a></li>
-                    <li><a>قسم تجريبي2</a></li>
-                </ul>
-            </li>
-            <li><a routerLink="/">الرئيسية</a></li>
-            <li><a routerLink="/allBooks">اخترنا لكم</a></li>
-            <li><a href="#" style="color:#009c96;">أضيف تواَ</a></li>
-            <li><a href="#">مشاهير الكُتّاب</a></li>
-            <li><a href="#">دور النشر</a></li>
-            <li><a routerLink="aboutus">من نحن؟</a></li>
-            <li><a href="#">اتصل بنا</a></li>
-        </ul>
-    </nav>
+<nav>
+    <ul class="pe-3">
+        <li class="menu ">
+            <a href="#" class="rounded p-2  px-3 ">جميع الأقسام<i class="fa fa-caret-down me-3"
+                    aria-hidden="true"></i></a>
+            <ul class="dropdown w-50 mt-1 rounded-start rounded-bottom p-3">
+                <div class="col-4 d-inline-block" *ngFor="let category of categories">
+                    <li class="my-2 fs-5"><a>{{category.name}}</a></li>
+                </div>
+            </ul>
+        </li>
+        <li><a routerLink="/">الرئيسية</a></li>
+        <li><a routerLink="/allBooks">اخترنا لكم</a></li>
+        <li><a href="#" style="color:#009c96;">أضيف تواَ</a></li>
+        <li><a href="#">مشاهير الكُتّاب</a></li>
+        <li><a href="#">دور النشر</a></li>
+        <li><a routerLink="aboutus">من نحن؟</a></li>
+        <li><a href="#">اتصل بنا</a></li>
+    </ul>
+</nav>

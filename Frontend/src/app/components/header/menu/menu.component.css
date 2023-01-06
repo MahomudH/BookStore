@@ -15,6 +15,7 @@ nav > ul > li > a {
   text-decoration: none;
   font-weight: bold;
   text-align: center;
+
 }
 
 
@@ -23,18 +24,17 @@ nav > ul > li.menu > a {
   color: #fff;
 }
 
-nav > ul > li > ul.dropdown > li {
+nav > ul > li > ul.dropdown> div > li {
+  text-decoration: none;
   display: block;
 }
 
-nav ul li ul.dropdown li > a {
-    background-color: #009c96;
+nav ul li ul.dropdown > div> li > a {
     color: #fff;
-    
 }
 
 nav ul li ul.dropdown {
-  width: 100%;
+  background-color: rgba(0, 156, 150,.7);
   position: absolute;
   z-index: 999;
   display: none;
@@ -43,3 +43,4 @@ nav ul li ul.dropdown {
 nav ul li:hover ul.dropdown {
   display: block;
 }
+
