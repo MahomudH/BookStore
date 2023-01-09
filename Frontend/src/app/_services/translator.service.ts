@@ -14,7 +14,7 @@ export class TranslatorService {
   constructor(private http: HttpClient) {}
 
   getTranslators() {
-    if (this.translators.length > 0) return of(this.translators);
+    // if (this.translators.length > 0) return of(this.translators);
     return this.http.get<Translator[]>(this.baseUrl + 'Translator').subscribe({
       next: (result) => {
         this.translators = result;

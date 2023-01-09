@@ -37,7 +37,7 @@ export class SalesService {
   }
 
   getAllSalesForAdmin() {
-    if (this.sales.length > 0) return of(this.sales);
+    // if (this.sales.length > 0) return of(this.sales);
     return this.http.get<ShowSalesForAdminDto[]>(this.baseURL).subscribe({
       next: (data) => {
         this.sales = data.map((item) => {
