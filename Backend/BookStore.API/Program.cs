@@ -34,6 +34,8 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localho
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapFallbackToFile("index.html");
+
 app.MapControllers();
 
 app.Run();
