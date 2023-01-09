@@ -18,7 +18,7 @@ namespace BookStore.API.Repositories
             _context = context;
             _mapper = mapper;
         }
-        public async Task<List<Book>> GetAllAsync(string filter = "")
+        public async Task<List<Book>> GetAllAsync(string filter)
         {
             return await _context.Books
                 .OrderByDescending(x => x.Id)

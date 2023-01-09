@@ -8,6 +8,7 @@ import {
   UpdateBookInput,
 } from '../Interfaces/Book';
 import { of } from 'rxjs';
+import { LoginComponent } from '../components/authentication/login/login.component';
 
 @Injectable({
   providedIn: 'root',
@@ -15,22 +16,44 @@ import { of } from 'rxjs';
 export class BookService {
   baseUrl = environment.baseUrl;
   books: Book[] = [];
-  newBooks:Book[] = [];
+  newBooks: Book[] = [];
 
   constructor(private http: HttpClient) {}
 
   getBooks(filter: string) {
-    if (this.books.length > 0) return of(this.books);
-    return this.http.get<Book[]>(this.baseUrl + 'Books/' + filter).subscribe({
-      next: (data) => {
-        this.books = data.map((item) => {
-          return {
-            ...item,
-            image: environment.baseUrlWithoutApi + 'Images/' + item.image,
-          };
+    if (filter == '') {
+      // if (this.books.length > 0) return of(this.books);
+      return this.http
+      .get<Book[]>(this.baseUrl + 'Books/Books' + filter)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+
+          this.books = data.map((item) => {
+            return {
+              ...item,
+              image: environment.baseUrlWithoutApi + 'Images/' + item.image,
+            };
+          });
+        },
+      });
+    } else {
+      this.books = [];
+      return this.http
+        .get<Book[]>(this.baseUrl + 'Books/Books/' + filter)
+        .subscribe({
+          next: (data) => {
+            console.log(data);
+
+            this.books = data.map((item) => {
+              return {
+                ...item,
+                image: environment.baseUrlWithoutApi + 'Images/' + item.image,
+              };
+            });
+          },
         });
-      },
-    });
+    }
   }
 
   getBookById(bookId: number) {

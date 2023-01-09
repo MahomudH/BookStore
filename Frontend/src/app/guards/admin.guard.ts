@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate  {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     if (this.authService.isUserAdmin()) {
-      console.log('true');
+      // console.log('true');
       
       return true;
     }

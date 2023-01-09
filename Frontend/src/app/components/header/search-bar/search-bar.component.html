@@ -4,8 +4,8 @@
     </div>
     <div class="col-md-10 search-wrap me-5">
        <div class="search-box h-100">
-        <input type="text" class="input" placeholder="ابحث باسم الكتاب او المؤلف">
-        <div class="btn btn-common">
+        <input type="text" class="input" placeholder="ابحث باسم الكتاب او المؤلف" [(ngModel)]="search">
+        <div class="btn btn-common" (click)="onSearch()" routerLink="/allBooks">
             <i class="fa fa-search" aria-hidden="true"></i>
         </div>
        </div>

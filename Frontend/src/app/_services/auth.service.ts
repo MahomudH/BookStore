@@ -6,7 +6,6 @@ import {
   LoginRequest,
   RegisterRequest,
 } from '../Interfaces/AuthenticationRequest';
-import { SalesService } from './sales.service';
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +47,7 @@ export class AuthService {
   }
 
   isUserAdmin() {
-    console.log('check admin');
+    // console.log('check admin');
 
     const role = this.getFieldFromJWT(
       'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
