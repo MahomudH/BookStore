@@ -22,10 +22,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.btn-success ,.text-bg-success{
+.btn-success ,.text-bg-success {
   background-color: #009c96 !important;
 }
- 
+
 thead{
   background-color: #eee8d5;
 }

@@ -9,6 +9,7 @@ import { SalesService } from 'src/app/_services/sales.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls:['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   constructor(

@@ -1,10 +1,11 @@
 <div class="container h-100">
   <div class="row justify-content-center h-100 align-content-lg-center">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="card my-4">
-        <h5 class="card-header">
-          تسجيل دخول
-        </h5>
+        <div class="mt-4 text-center">
+          <img src="assets/icons/Untitled-1.png" alt="" width="180" class="d-block m-auto mb-3">
+          <label class="fw-bold">تسجيل الدخول</label>
+        </div>
         <div class="card-body">
 
           <div *ngIf="showError" class="alert alert-danger" role="alert">
@@ -13,34 +14,35 @@
 
           <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser()">
             <div class="mb-3 row">
-              <label for="email" class="col-form-label col-sm-2">الايميل:</label>
-              <div class="col-md-5">
-                <input type="email" id="email" formControlName="email" class="form-control" />
+              <div class="col-md-10 m-auto">
+                <input type="email" id="email" formControlName="email" class="form-control" placeholder="البريد الاكتروني"/>
               </div>
-              <div class="col-md-5">
-                <em *ngIf="
+              <div class="col-md-5 me-5 mt-2">
+                <label *ngIf="
                         validateControl('email') && hasError('email', 'required')
-                      ">حقل الايميل مطلوب</em>
-                <em *ngIf="validateControl('email') && hasError('email', 'email')">صيفة البريد الاكتروني غير صحيحة</em>
+                      ">الرجاءادخال الايميل</label>
+                <label *ngIf="validateControl('email') && hasError('email', 'email')">البريد الاكتروني غير صحيحة</label>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="password" class="col-form-label col-sm-2">كلمة المرور:</label>
-              <div class="col-md-5">
-                <input type="password" id="password" formControlName="password" class="form-control" />
+              <div class="col-md-10 m-auto">
+                <input type="password" id="password" formControlName="password" class="form-control" placeholder="كملة المرور"/>
               </div>
-              <div class="col-md-5">
-                <em *ngIf="
+              <div class="col-md-5 me-5 mt-2">
+                <label *ngIf="
                         validateControl('password') &&
                         hasError('password', 'required')
-                      ">كلمة المرور مطلوبة</em>
+                      ">كلمة المرور مطلوبة</label>
               </div>
             </div>
             <br />
             <div class="mb-3 row">
               <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">
+                <button type="submit" class="btn btn-outline-success mx-3" [disabled]="!loginForm.valid">
                   تسجيل الدخول
+                </button>
+                <button type="submit" class="btn btn-secondary" routerLink="/auth/register">
+                  إنشاء حساب جديد
                 </button>
               </div>
             </div>

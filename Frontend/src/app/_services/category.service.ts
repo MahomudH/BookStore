@@ -14,7 +14,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getCategories() {
-    if (this.categories.length > 0) return of(this.categories);
+    // if (this.categories.length > 0) return of(this.categories);
     return this.http.get<Category[]>(this.baseUrl + 'Categories').subscribe({
       next: (result) => {
         this.categories = result;

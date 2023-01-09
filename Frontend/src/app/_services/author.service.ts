@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Author } from '../Interfaces/Author';
-import { of } from 'rxjs';
+import { Subject, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,19 +10,32 @@ import { of } from 'rxjs';
 export class AuthorService {
   baseUrl = environment.baseUrl;
   authors: Author[] = [];
+  private refresh = new Subject<void>();
 
   constructor(private http: HttpClient) {}
 
+  get RefreshReq() {
+    return this.refresh;
+  }
+
   getAuthors() {
     if (this.authors.length > 0) return of(this.authors);
-    return this.http.get<Author[]>(this.baseUrl + 'Author').subscribe({
-      next: (result) => {
-        this.authors = result;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+
+    return this.http
+      .get<Author[]>(this.baseUrl + 'Author')
+      .pipe(
+        tap(() => {
+          this.RefreshReq.next();
+        })
+      )
+      .subscribe({
+        next: (result) => {
+          this.authors = result;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
   getAuthorById(authorId: number) {
