@@ -19,7 +19,7 @@ export class AuthorService {
   }
 
   getAuthors() {
-    if (this.authors.length > 0) return of(this.authors);
+    // if (this.authors.length > 0) return of(this.authors);
 
     return this.http
       .get<Author[]>(this.baseUrl + 'Author')
