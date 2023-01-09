@@ -23,6 +23,6 @@ export class MenuComponent implements OnInit {
   }
 
   onGetAllBook() {
-    // this._bookService.getBooks('');
+    this._bookService.getBooks('');
   }
 }
